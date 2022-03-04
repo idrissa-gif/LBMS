@@ -11,7 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -34,6 +36,7 @@ public class BookController implements Initializable {
     public TableColumn <Book,String>StatusTableColumn;
     public Button DelBookButton;
     public Button AddBookButton;
+    public TextField SearchTextFiled;
 
     @FXML
     ObservableList<Book> oblist = FXCollections.observableArrayList();
@@ -68,9 +71,7 @@ public class BookController implements Initializable {
         StatusTableColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
         BookTableView.setItems(oblist);
     }
-    public void ClickOnSearchButton(ActionEvent actionEvent) {
 
-    }
 
     public void ClickOnAddBookButton(ActionEvent actionEvent) throws IOException {
         Stage window = (Stage) AddBookButton.getScene().getWindow();
@@ -94,5 +95,34 @@ public class BookController implements Initializable {
         stage.initOwner(window);
         stage.setScene(scene);
         stage.show();
+    }
+    public void PressOnKeyStrokes(KeyEvent keyEvent) {
+        if(keyEvent.getCode()== keyEvent.getCode().ENTER)
+        {
+            ClickOnSearchButton(new ActionEvent());
+        }
+    }
+    public void ClickOnSearchButton(ActionEvent actionEvent) {
+        BookTableView.getItems().clear();
+        try {
+            String query = "SELECT I.itemnumber , B.title, I.itemcallnumber, B.author,BI.isbn,I.biblionumber, I.barcode from items I , biblio B ,biblioitems BI where ((I.biblionumber=B.biblionumber AND BI.biblionumber=I.biblionumber) AND ( I.biblionumber='%"+SearchTextFiled.getText()+"%' OR B.title='%"+SearchTextFiled.getText()+"%' OR I.itemcallnumber='%"+SearchTextFiled.getText()+"%' OR B.author='%"+SearchTextFiled.getText()+"%' OR B.Iiblionumber='%"+SearchTextFiled.getText()+"%' OR I.barcode='%"+SearchTextFiled.getText()+"%'))";
+            DatabaseConnection conn = new DatabaseConnection();
+            PreparedStatement ps = conn.getConnection("root", "admin123").prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                oblist.add(new Book(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),rs.getString(7)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        BookIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("BookID"));
+        BookNumberTableColumn.setCellValueFactory(new PropertyValueFactory<>("BookTitle"));
+        TitleTableColumn.setCellValueFactory(new PropertyValueFactory<>("BookCell"));
+        AuthorColumn.setCellValueFactory(new PropertyValueFactory<>("BookAuthor"));
+        ISBNColumn.setCellValueFactory(new PropertyValueFactory<>("ISBN"));
+        BibioTableColumn.setCellValueFactory(new PropertyValueFactory<>("bibionumber"));
+        StatusTableColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        BookTableView.setItems(oblist);
     }
 }

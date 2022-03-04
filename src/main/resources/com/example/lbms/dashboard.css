@@ -1,0 +1,20 @@
+
+AnchorPane
+{
+
+/*-fx-background-image:url('images/Books.png');*/
+  -fx-background-size: 100% 100%;
+}
+
+Button
+{
+  -fx-background-color: #004A00
+}
+
+Button:hover,MenuButton:hover
+{
+  -fx-background-color: #098500;
+}
+
+
+

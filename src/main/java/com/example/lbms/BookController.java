@@ -105,7 +105,7 @@ public class BookController implements Initializable {
     public void ClickOnSearchButton(ActionEvent actionEvent) {
         BookTableView.getItems().clear();
         try {
-            String query = "SELECT I.itemnumber , B.title, I.itemcallnumber, B.author,BI.isbn,I.biblionumber, I.barcode from items I , biblio B ,biblioitems BI where ((I.biblionumber=B.biblionumber AND BI.biblionumber=I.biblionumber) AND ( I.biblionumber='%"+SearchTextFiled.getText()+"%' OR B.title='%"+SearchTextFiled.getText()+"%' OR I.itemcallnumber='%"+SearchTextFiled.getText()+"%' OR B.author='%"+SearchTextFiled.getText()+"%' OR B.Iiblionumber='%"+SearchTextFiled.getText()+"%' OR I.barcode='%"+SearchTextFiled.getText()+"%'))";
+            String query = "SELECT I.itemnumber , B.title, I.itemcallnumber, B.author,BI.isbn,I.biblionumber, I.barcode from items I , biblio B ,biblioitems BI where ((I.biblionumber=B.biblionumber AND BI.biblionumber=I.biblionumber) AND ( I.biblionumber LIKE '%"+SearchTextFiled.getText()+"%' OR B.title LIKE '%"+SearchTextFiled.getText()+"%' OR I.itemcallnumber LIKE '%"+SearchTextFiled.getText()+"%' OR B.author LIKE '%"+SearchTextFiled.getText()+"%' OR B.biblionumber LIKE '%"+SearchTextFiled.getText()+"%' OR I.barcode LIKE '%"+SearchTextFiled.getText()+"%'))";
             DatabaseConnection conn = new DatabaseConnection();
             PreparedStatement ps = conn.getConnection("root", "admin123").prepareStatement(query);
             ResultSet rs = ps.executeQuery();

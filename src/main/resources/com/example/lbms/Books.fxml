@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.gluonhq.charm.glisten.control.DropdownButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
@@ -13,13 +14,14 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="638.0" stylesheets="@Student.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lbms.BookController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="638.0" stylesheets="@Student.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lbms.BookController">
    <children>
-      <AnchorPane layoutY="193.0" prefHeight="291.0" prefWidth="638.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane layoutY="183.0" prefHeight="301.0" prefWidth="638.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <TableView fx:id="BookTableView" prefHeight="275.0" prefWidth="638.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="-15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
+            <TableView fx:id="BookTableView" layoutY="-1.0" prefHeight="333.0" prefWidth="638.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="-31.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0">
                <columns>
-                  <TableColumn fx:id="BookIdTableColumn" minWidth="15.0" prefWidth="115.0" text="Book Id" />
+                  <TableColumn fx:id="EditDelTableColumn" minWidth="15.0" prefWidth="103.0" text="Edit/Delete" />
+                  <TableColumn fx:id="BookIdTableColumn" minWidth="15.0" prefWidth="127.0" text="Book Id" />
                   <TableColumn fx:id="BookNumberTableColumn" minWidth="15.0" prefWidth="104.0" text="Book Number" />
                   <TableColumn fx:id="TitleTableColumn" minWidth="15.0" prefWidth="203.0" text="Title" />
                   <TableColumn fx:id="AuthorColumn" minWidth="15.0" prefWidth="94.0" text="Author" />
@@ -30,14 +32,14 @@
             </TableView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane layoutY="104.0" prefHeight="5.0" prefWidth="638.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <TilePane layoutX="405.8999938964844" layoutY="5.900000095367432" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="65.0" AnchorPane.rightAnchor="167.10000610351562">
+            <TilePane layoutX="395.0" layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="65.0" AnchorPane.rightAnchor="178.0">
                <children>
                   <Button fx:id="SearchButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="19.0" mnemonicParsing="false" onAction="#ClickOnSearchButton" prefHeight="30.0" prefWidth="65.0" stylesheets="@main.css" text="Search" textAlignment="CENTER" textFill="WHITE" />
                </children>
             </TilePane>
-            <DropdownButton layoutX="525.0" layoutY="9.0" AnchorPane.rightAnchor="47.0">
+            <DropdownButton layoutX="496.0" layoutY="49.0" AnchorPane.rightAnchor="108.0">
                <items>
                   <MenuItem text="Filter" />
                   <MenuItem text="ID" />
@@ -47,10 +49,12 @@
                   <MenuItem text="Programme" />
                </items>
             </DropdownButton>
-            <TextField fx:id="SearchTextFiled" layoutX="14.0" layoutY="9.0" onKeyPressed="#PressOnKeyStrokes" prefHeight="24.0" prefWidth="386.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="238.0" />
+            <TextField fx:id="SearchTextFiled" layoutX="6.0" layoutY="46.0" onKeyPressed="#PressOnKeyStrokes" prefHeight="24.0" prefWidth="386.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="246.0" />
+            <FontAwesomeIconView fx:id="AddBookButton" fill="#00ab1b" glyphName="PLUS" layoutX="10.0" layoutY="36.28571319580078" onMouseClicked="#ClickOnAddBookButton" selectionStart="0" size="40" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="2.0" />
+            <FontAwesomeIconView fx:id="DelBookButton" fill="#3dbf1d" glyphName="REFRESH" layoutX="90.0" layoutY="37.0" onMouseClicked="#ClickOnDelBookButton" selectionStart="0" size="40" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="45.0" prefHeight="102.0" prefWidth="638.0" style="-fx-background-color: green;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane prefHeight="102.0" prefWidth="680.0" style="-fx-background-color: green;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="269.0" layoutY="30.0" prefHeight="53.0" prefWidth="250.0" text="Home / Books" textAlignment="CENTER" AnchorPane.leftAnchor="269.0" AnchorPane.rightAnchor="119.0" AnchorPane.topAnchor="30.0">
                <font>
@@ -64,15 +68,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <TilePane alignment="CENTER" layoutX="14.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="90.0" AnchorPane.rightAnchor="537.0">
-         <children>
-            <Button fx:id="AddBookButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="19.0" mnemonicParsing="false" onAction="#ClickOnAddBookButton" prefHeight="40.0" prefWidth="90.0" stylesheets="@main.css" text="Add Book" textAlignment="CENTER" textFill="WHITE" />
-         </children>
-      </TilePane>
-      <TilePane alignment="CENTER" layoutX="149.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="90.0" AnchorPane.rightAnchor="399.0">
-         <children>
-            <Button fx:id="DelBookButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="19.0" mnemonicParsing="false" onAction="#ClickOnDelBookButton" prefHeight="40.0" prefWidth="101.0" stylesheets="@main.css" text="Del. Book" textAlignment="CENTER" textFill="WHITE" />
-         </children>
-      </TilePane>
+      <TilePane alignment="CENTER" layoutX="14.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="90.0" AnchorPane.rightAnchor="537.0" />
+      <TilePane alignment="CENTER" layoutX="149.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="90.0" AnchorPane.rightAnchor="399.0" />
    </children>
 </AnchorPane>

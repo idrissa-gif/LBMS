@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lbms.EditBookController">
+   <children>
+      <TextField fx:id="BookIDTextField" layoutX="215.0" layoutY="108.0" />
+      <Label layoutX="142.0" layoutY="108.0" prefHeight="24.0" prefWidth="73.0" text="Book ID" />
+      <TextField fx:id="BookTitleTextField" layoutX="215.0" layoutY="142.0" />
+      <Label layoutX="142.0" layoutY="142.0" prefHeight="24.0" prefWidth="73.0" text="Book Title" />
+      <TextField fx:id="AuthorTextField" layoutX="215.0" layoutY="176.0" />
+      <Label layoutX="142.0" layoutY="176.0" prefHeight="24.0" prefWidth="73.0" text="Author" />
+      <TextField fx:id="ISBNTextField" layoutX="215.0" layoutY="210.0" />
+      <Label layoutX="142.0" layoutY="210.0" prefHeight="24.0" prefWidth="73.0" text="ISBN" />
+      <TextField fx:id="CellTextField" layoutX="215.0" layoutY="242.0" />
+      <Label layoutX="142.0" layoutY="242.0" prefHeight="24.0" prefWidth="73.0" text="Cell" />
+      <Button fx:id="EditButton" layoutX="269.0" layoutY="291.0" mnemonicParsing="false" text="Edit" />
+      <Label layoutX="172.0" prefHeight="84.0" prefWidth="317.0" text="EDIT A BOOK DETAILS">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

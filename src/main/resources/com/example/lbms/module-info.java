@@ -8,5 +8,6 @@ module com.example.lbms {
 	requires mysql.connector.java;
 	requires fontawesomefx.glyphsbrowser.all;
 	requires fontawesomefx;
+	requires de.jensd.fx.fontawesomefx.fontawesome;
 	opens application to javafx.graphics, javafx.fxml;
 }

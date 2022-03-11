@@ -82,24 +82,22 @@
     <orderEntry type="library" name="Maven: com.sun.mail:jakarta.mail:1.6.7" level="project" />
     <orderEntry type="library" name="Maven: com.sun.activation:jakarta.activation:1.2.1" level="project" />
     <orderEntry type="library" name="charm-glisten-4.4.1" level="application" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/resources/com/example/lbms/fontawesomefx-glyphsbrowser-all-1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/src/main/resources/com/example/lbms/fontawesomefx-commons-9.1.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
-        <jarDirectory url="jar://$MODULE_DIR$/src/main/resources/com/example/lbms/fontawesomefx-glyphsbrowser-all-1.0.jar!/" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/resources/com/example/lbms/fontawesomefx-8.9.jar!/" />
+          <root url="jar://$MODULE_DIR$/src/main/resources/com/example/lbms/fontawesomefx-fontawesome-4.7.0-9.1.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
-        <jarDirectory url="jar://$MODULE_DIR$/src/main/resources/com/example/lbms/fontawesomefx-8.9.jar!/" recursive="false" />
       </library>
     </orderEntry>
   </component>

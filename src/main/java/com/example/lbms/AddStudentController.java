@@ -68,24 +68,6 @@ public class AddStudentController implements Initializable {
         return md.digest(input.getBytes(StandardCharsets.UTF_8));
     }
 
-    /*public  String toHexString(byte[] hash)
-    {
-        // Convert byte array into signum representation
-        BigInteger number = new BigInteger(1, hash);
-
-        // Convert message digest into hex value
-        StringBuilder hexString = new StringBuilder(number.toString(1));
-
-        // Pad with leading zeros
-*//*
-        while (hexString.length() < 16)
-        {
-            hexString.insert(0, '0');
-        }
-*//*
-
-        return hexString.toString();
-    }*/
 
     public void insertStudentInfo()
     {

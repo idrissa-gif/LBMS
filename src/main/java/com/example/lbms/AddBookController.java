@@ -23,6 +23,7 @@ public class AddBookController implements Initializable {
     }
 
     public void ClickAddBookButton(ActionEvent actionEvent) {
+
     }
 
     public void ClickonCancelButton(ActionEvent actionEvent) {

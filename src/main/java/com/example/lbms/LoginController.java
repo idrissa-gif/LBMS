@@ -29,6 +29,7 @@ public class LoginController implements Initializable {
     public Button ConnectButton1;
     Stage stage;
     Parent root;
+    public static String pass , username;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 

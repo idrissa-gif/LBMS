@@ -103,9 +103,6 @@ public class AdminController implements Initializable {
         MainPage.getChildren().setAll(node);
     }
 
-    public void EnrollbuttonOnclick(ActionEvent actionEvent) {
-    }
-
     public void ClickOnReturnBookButton(ActionEvent actionEvent) throws IOException {
         AnchorPane node =  FXMLLoader.load(getClass().getResource("ReturnBook.fxml"));
         AnchorPane.setLeftAnchor(node,0.0);

@@ -59,6 +59,8 @@ public class StudentController implements Initializable {
     }
 
     public void refreshTableView() throws SQLException {
+        StudentTableView.getItems().clear();
+        SearchTextFiled.setText(null);
         try {
             String query = "SELECT cardnumber ,surname,firstname , phone , address ,country ,email from borrowers";
             DatabaseConnection conn = new DatabaseConnection();

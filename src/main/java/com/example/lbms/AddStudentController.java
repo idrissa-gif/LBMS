@@ -1,6 +1,5 @@
 package com.example.lbms;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -10,21 +9,32 @@ import javafx.scene.control.TextField;
 import javafx.stage.Window;
 
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import static com.example.lbms.DatabaseConnection.printSQLException;
+
 public class AddStudentController implements Initializable {
+    @FXML
     public CheckBox MaleCheckBox;
     public CheckBox FemaleCheckBox;
-    @FXML
-    private Button Enroll;
-    @FXML
-    private TextField NameText;
-    @FXML
-    private TextField EmailText;
-    @FXML
-    private TextField StudentIDText;
+    public TextField FNameTextField;
+    public TextField LNameTextField;
+    public TextField StudentID;
+    public TextField EmailTextField;
+    public TextField PhoneTextField;
+    public TextField CountryTextField;
+    public TextField AddressTextField;
+    public TextField CityTextField;
+    public Button Enroll;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -47,19 +57,75 @@ public class AddStudentController implements Initializable {
         return String.valueOf(password);
     }
 
-    public void EnrollbuttonOnclick(ActionEvent actionEvent) {
-        DatabaseConnection connectionNow = new DatabaseConnection();
-        String pass = null;
-        String passwd= PasswordGenerator();
-        try {
-            pass = connectionNow.toHexString(connectionNow.getHash(passwd));
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+    public byte[] getHash(String input) throws NoSuchAlgorithmException
+    {
+        // Static getInstance method is called with hashing SHA
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+
+        // digest() method called
+        // to calculate message digest of an input
+        // and return array of byte
+        return md.digest(input.getBytes(StandardCharsets.UTF_8));
+    }
+
+    /*public  String toHexString(byte[] hash)
+    {
+        // Convert byte array into signum representation
+        BigInteger number = new BigInteger(1, hash);
+
+        // Convert message digest into hex value
+        StringBuilder hexString = new StringBuilder(number.toString(1));
+
+        // Pad with leading zeros
+*//*
+        while (hexString.length() < 16)
+        {
+            hexString.insert(0, '0');
         }
-        connectionNow.insertStudentInfo(StudentIDText.getText(),NameText.getText(),EmailText.getText(),pass,passwd);
-        StudentIDText.setText("");
-        NameText.setText("");
-        EmailText.setText("");
+*//*
+
+        return hexString.toString();
+    }*/
+
+    public void insertStudentInfo()
+    {
+        DatabaseConnection conn =  new DatabaseConnection();
+        String INSERT_QUERY = "INSERT INTO borrowers (cardnumber, surname , firstname, title,email,phone,branchcode,categorycode,dateenrolled,country,sex,password,address,city) VALUES ( ?, ?, ?,?,?,?,'IUTL','ST',?,?,?,?,?,?)";
+        try {
+            String Std_Password = String.valueOf(getHash(PasswordGenerator()));
+            PreparedStatement preparedStatement = conn.getConnection("root","admin123").prepareStatement(INSERT_QUERY);
+            preparedStatement.setInt(1, Integer.parseInt(StudentID.getText()));
+            preparedStatement.setString(2, LNameTextField.getText());
+            preparedStatement.setString(3, FNameTextField.getText());
+            preparedStatement.setString(5,EmailTextField.getText());
+            preparedStatement.setString(6,PhoneTextField.getText());
+            String pattern = "yyyy-MM-dd hh:mm:ss";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+            String date = simpleDateFormat.format(new Date());
+            preparedStatement.setTimestamp(7, Timestamp.valueOf(date));
+            preparedStatement.setString(8,CountryTextField.getText());
+            preparedStatement.setString(10,Std_Password);
+            preparedStatement.setString(11,AddressTextField.getText()==null?"":AddressTextField.getText());
+            preparedStatement.setString(12,CityTextField.getText()==null?"":CityTextField.getText());
+            if(MaleCheckBox.isSelected())
+            {
+                preparedStatement.setString(4,"Mr");
+                preparedStatement.setString(9,"M");
+                FemaleCheckBox.setSelected(false);
+            }
+            else if(FemaleCheckBox.isSelected())
+            {
+                preparedStatement.setString(4,"Ms");
+                preparedStatement.setString(9,"F");
+                MaleCheckBox.setSelected(false);
+            }
+            preparedStatement.executeUpdate();
+        }
+        catch (SQLException | NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            printSQLException((SQLException) e);
+            showAlert(Alert.AlertType.ERROR,Enroll.getScene().getWindow(),"ERROR!!", e.getMessage());
+        }
     }
     public void showAlert(Alert.AlertType error, Window wind, String Tittle, String message) {
         Alert alert = new Alert(error);
@@ -69,4 +135,5 @@ public class AddStudentController implements Initializable {
         alert.initOwner(wind);
         alert.show();
     }
+
 }

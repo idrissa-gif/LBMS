@@ -12,17 +12,13 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -30,6 +26,7 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,10 +41,10 @@ public class StudentController implements Initializable {
     public  TableColumn <Student, String> CountryTableColumn;
     public  TableColumn<Student, String> EmailTableColumn;
     public Button SearchButton;
-    public Button AddStudentButton;
     public Button DeleteStudentButton;
     public TextField SearchTextFiled;
-    public TableColumn EditDelTableColumn;
+    public TableColumn<Book, String> EditDelTableColumn;
+    public FontAwesomeIconView AddStudentButton;
 
     @FXML
     ObservableList<Student> oblist = FXCollections.observableArrayList();
@@ -55,7 +52,7 @@ public class StudentController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            refreshTableView();
+            loadDate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -108,21 +105,9 @@ public class StudentController implements Initializable {
         StudentTableView.setItems(oblist);
     }
 
-    public void ClickOnAddStudentButton(ActionEvent actionEvent) throws IOException {
+    public void ClickOnAddStudentButton(MouseEvent actionEvent) throws IOException {
         Stage window = (Stage) AddStudentButton.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("AddBook.fxml"));
-        Scene scene = new Scene(root);
-        //Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(window);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void ClickOnDeleteStudentButton(ActionEvent actionEvent) throws IOException {
-        Stage window = (Stage) DeleteStudentButton.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("DeleteStudent.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AddStudent.fxml"));
         Scene scene = new Scene(root);
         //Scene scene = new Scene(root);
         Stage stage = new Stage();
@@ -168,13 +153,21 @@ public class StudentController implements Initializable {
 
                             try {
                                 Student student =StudentTableView.getSelectionModel().getSelectedItem();
-                                String query = "DELETE FROM items WHERE itemnumber  = '"+student.getId()+"'";
+                                String query = "DELETE FROM borrowers WHERE cardnumber='"+student.getId()+"'";
                                 DatabaseConnection conn = new DatabaseConnection();
                                 PreparedStatement ps = conn.getConnection("root", "admin123").prepareStatement(query);
-
-                                ps.execute();
+                                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                alert.setTitle("Delete Conformation?");
+                                alert.setHeaderText(null);
+                                alert.setContentText("Do you really can to delete the Student ID "+student.getId());
+                                alert.initOwner(StudentTableView.getScene().getWindow());
+                                Optional<ButtonType> RES = alert.showAndWait();
+                                if(RES.get() == ButtonType.OK)
+                                {
+                                    ps.execute();
+                                    refreshTableView();
+                                }
                                 refreshTableView();
-
                             } catch (SQLException ex) {
                                 Logger.getLogger(BookController.class.getName()).log(Level.SEVERE, null, ex);
                             }
@@ -182,19 +175,22 @@ public class StudentController implements Initializable {
                         editIcon.setOnMouseClicked((MouseEvent event) -> {
                             Student student = StudentTableView.getSelectionModel().getSelectedItem();
                             FXMLLoader loader = new FXMLLoader ();
-                            loader.setLocation(getClass().getResource("EditBook.fxml"));
+                            loader.setLocation(getClass().getResource("EditStudent.fxml"));
                             try {
                                 loader.load();
                             } catch (IOException ex) {
                                 Logger.getLogger(BookController.class.getName()).log(Level.SEVERE, null, ex);
                             }
+                            Stage window = (Stage) editIcon.getScene().getWindow();
 
                             EditStudentController editStudentController = loader.getController();
                             editStudentController.setTextField(student.getId(), student.getFname(),student.getLname(),student.getAddress(),student.getPhone(), student.getEmail(),student.getCountry());
                             Parent parent = loader.getRoot();
+
                             Stage stage = new Stage();
+                            stage.initModality(Modality.APPLICATION_MODAL);
+                            stage.initOwner(window);
                             stage.setScene(new Scene(parent));
-                            stage.initStyle(StageStyle.UTILITY);
                             stage.show();
                         });
 

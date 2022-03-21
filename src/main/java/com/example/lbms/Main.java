@@ -54,6 +54,8 @@ public class Main extends Application {
 
         Scene scene = new Scene(root,900,650);
         //Scene scene = new Scene(root);
+        EmailSenderService emailSenderService = new EmailSenderService();
+        emailSenderService.sendEmail("is190041242@gmail.com","New Password","test123");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

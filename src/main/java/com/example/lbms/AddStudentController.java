@@ -7,11 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -57,16 +55,6 @@ public class AddStudentController implements Initializable {
         return String.valueOf(password);
     }
 
-    public byte[] getHash(String input) throws NoSuchAlgorithmException
-    {
-        // Static getInstance method is called with hashing SHA
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
-
-        // digest() method called
-        // to calculate message digest of an input
-        // and return array of byte
-        return md.digest(input.getBytes(StandardCharsets.UTF_8));
-    }
 
 
     public void insertStudentInfo()
@@ -74,7 +62,7 @@ public class AddStudentController implements Initializable {
         DatabaseConnection conn =  new DatabaseConnection();
         String INSERT_QUERY = "INSERT INTO borrowers (cardnumber, surname , firstname, title,email,phone,branchcode,categorycode,dateenrolled,country,sex,password,address,city) VALUES ( ?, ?, ?,?,?,?,'IUTL','ST',?,?,?,?,?,?)";
         try {
-            String Std_Password = String.valueOf(getHash(PasswordGenerator()));
+            String Std_Password = DigestUtils.sha3_256Hex((PasswordGenerator()));
             PreparedStatement preparedStatement = conn.getConnection("root","admin123").prepareStatement(INSERT_QUERY);
             preparedStatement.setInt(1, Integer.parseInt(StudentID.getText()));
             preparedStatement.setString(2, LNameTextField.getText());
@@ -103,7 +91,7 @@ public class AddStudentController implements Initializable {
             }
             preparedStatement.executeUpdate();
         }
-        catch (SQLException | NoSuchAlgorithmException e) {
+        catch (SQLException e) {
             e.printStackTrace();
             printSQLException((SQLException) e);
             showAlert(Alert.AlertType.ERROR,Enroll.getScene().getWindow(),"ERROR!!", e.getMessage());
@@ -117,5 +105,4 @@ public class AddStudentController implements Initializable {
         alert.initOwner(wind);
         alert.show();
     }
-
 }

@@ -50,12 +50,12 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root;
-        root = FXMLLoader.load(getClass().getResource("admin.fxml"));
+        root = FXMLLoader.load(getClass().getResource("Login.fxml"));
 
-        Scene scene = new Scene(root,900,650);
-        //Scene scene = new Scene(root);
-        EmailSenderService emailSenderService = new EmailSenderService();
-        emailSenderService.sendEmail("is190041242@gmail.com","New Password","test123");
+        //Scene scene = new Scene(root,900,650);
+        Scene scene = new Scene(root);
+        /*EmailSenderService emailSenderService = new EmailSenderService();
+        emailSenderService.sendEmail("is190041242@gmail.com","New Password","test123");*/
         primaryStage.setScene(scene);
         primaryStage.show();
     }

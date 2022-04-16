@@ -1,5 +1,7 @@
 package com.example.lbms;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,8 +15,8 @@ public class DatabaseConnection {
             try
             {
                 UserName=userName;
-                Password=password;
-                datalink = DriverManager.getConnection(url,UserName,Password);
+                Password= DigestUtils.sha3_256Hex(password);
+                datalink = DriverManager.getConnection(url,"root","admin123");
             }
             catch (SQLException e) {
                 e.printStackTrace();

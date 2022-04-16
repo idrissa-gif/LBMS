@@ -10,9 +10,12 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -52,19 +55,31 @@ public class LoginController implements Initializable {
         connectionNow = conn.getConnection(DBUserName1.getText(),DBPassword1.getText());
         if(!isDbConnected(connectionNow))
         {
-            showAlert(Alert.AlertType.WARNING,wind,"Form Error !", "Username or Password is invalid");
+            showAlert(Alert.AlertType.WARNING,wind,"Form Error !", "Failed to connect to the database! ");
             return ;
         }
         try
         {
-            Stage stage = new Stage();
-            Stage window = (Stage) ConnectButton1.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("admin.fxml"));
-            Scene scene = new Scene(root,900,600);
-            stage.setScene(scene);
-            window.close();
-            showAlert(Alert.AlertType.INFORMATION,window,"Info","Welcome sir !!");
-            stage.show();
+            System.out.println(DigestUtils.sha3_256Hex(DBPassword1.getText()));
+            String query = "SELECT * FROM Librarian where Lib_name = '"+DBUserName1.getText()+"' and password = '"+ DigestUtils.sha3_256Hex(DBPassword1.getText())+"'";
+            PreparedStatement preparedStatement = conn.getConnection("root","admin123").prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                Stage stage = new Stage();
+                Stage window = (Stage) ConnectButton1.getScene().getWindow();
+                root = FXMLLoader.load(getClass().getResource("admin.fxml"));
+                Scene scene = new Scene(root,900,600);
+                stage.setScene(scene);
+                window.close();
+                stage.show();
+                showAlert(Alert.AlertType.INFORMATION, scene.getWindow(), "Info","Welcome sir !!");
+            }
+            else
+            {
+                showAlert(Alert.AlertType.WARNING,wind,"Form Error !", "Invalid Userid or Password!!!");
+                return ;
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -20,10 +20,10 @@ public class DashboardController implements Initializable {
         try
         {
             DatabaseConnection conn = new DatabaseConnection();
-            //String query = "SELECT image FROM Librarian WHERE Lib_name = ?";
-            String query = "SELECT imagefile FROM patronimage WHERE borrowernumber = 1";
+            String query = "SELECT image FROM Librarian WHERE Lib_name = ?";
+            //String query = "SELECT imagefile FROM patronimage WHERE borrowernumber = 1";
             PreparedStatement preparedStatement = conn.getConnection("root","admin123").prepareStatement(query);
-            //preparedStatement.setString(1,id);
+            preparedStatement.setString(1,id);
             ResultSet resultSet= preparedStatement.executeQuery();
             if(resultSet.next())
             {

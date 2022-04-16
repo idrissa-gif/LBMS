@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="lbms">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/main/resources/com/example/lbms/jfoenix-8.0.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/main/resources/com/example/lbms/jfoenix-9.0.10.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

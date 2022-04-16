@@ -60,6 +60,8 @@ public class LoginController implements Initializable {
         }
         try
         {
+            Main.user = DBUserName1.getText();
+            Main.Passwd = DigestUtils.sha3_256Hex(DBPassword1.getText());
             System.out.println(DigestUtils.sha3_256Hex(DBPassword1.getText()));
             String query = "SELECT * FROM Librarian where Lib_name = '"+DBUserName1.getText()+"' and password = '"+ DigestUtils.sha3_256Hex(DBPassword1.getText())+"'";
             PreparedStatement preparedStatement = conn.getConnection("root","admin123").prepareStatement(query);

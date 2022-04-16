@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -25,6 +26,7 @@ public class AdminController implements Initializable {
     public AnchorPane MainPage;
 
     @FXML
+    private ImageView ImageViewadmin;
     private Parent root;
     private Stage stage;
     private Scene scene;
@@ -120,4 +122,5 @@ public class AdminController implements Initializable {
         AnchorPane.setBottomAnchor(node,0.0);
         MainPage.getChildren().setAll(node);
     }
+
 }

@@ -32,12 +32,13 @@
       </AnchorPane>
       <AnchorPane fx:id="SearchPane" layoutY="112.0" prefHeight="89.0" prefWidth="638.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <TilePane layoutX="395.0" layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="65.0" AnchorPane.rightAnchor="178.0">
+            <TilePane layoutX="395.0" layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="89.0" AnchorPane.rightAnchor="154.0">
                <children>
-                  <Button fx:id="SearchButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="19.0" mnemonicParsing="false" onAction="#ClickOnSearchButton" prefHeight="30.0" prefWidth="65.0" stylesheets="@main.css" text="Search" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="SearchButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="19.0" mnemonicParsing="false" onAction="#ClickOnSearchButton" prefHeight="30.0" prefWidth="90.0" stylesheets="@main.css" text="Search" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
-                     </font></Button>
+                     </font>
+                  </Button>
                </children>
             </TilePane>
             <TextField fx:id="SearchTextFiled" layoutX="6.0" layoutY="46.0" onKeyPressed="#PressOnKeyStrokes" prefHeight="24.0" prefWidth="386.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="246.0" />

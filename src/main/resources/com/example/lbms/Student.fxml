@@ -12,10 +12,9 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="P1" stylesheets="@Books.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lbms.StudentController">
    <children>
-      <AnchorPane fx:id="P2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="638.0" style="-fx-background-color: white;" stylesheets="@Books.css">
+      <AnchorPane fx:id="P2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="638.0" style="-fx-background-color: white;" stylesheets="@Books.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane layoutY="193.0" prefHeight="428.0" prefWidth="638.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
@@ -38,7 +37,7 @@
                   <TextField fx:id="SearchTextFiled" layoutX="14.0" layoutY="33.0" onKeyPressed="#PressOnKeyStrokes" prefHeight="24.0" prefWidth="393.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="231.0" />
                   <TilePane layoutX="405.8999938964844" layoutY="5.900000095367432" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="65.0" AnchorPane.rightAnchor="167.10000610351562" />
                   <FontAwesomeIconView fx:id="AddStudentButton" fill="YELLOW" glyphName="USER_PLUS" layoutX="25.0" layoutY="24.0" onMouseClicked="#ClickOnAddStudentButton" selectionFill="YELLOW" size="30" AnchorPane.leftAnchor="25.0" />
-                  <Button fx:id="SearchButton" layoutX="415.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="19.0" mnemonicParsing="false" onAction="#ClickOnSearchButton" prefHeight="30.0" prefWidth="76.0" stylesheets="@main.css" text="Search" textAlignment="CENTER" textFill="#e8e6e0">
+                  <Button fx:id="SearchButton" layoutX="415.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="19.0" mnemonicParsing="false" onAction="#ClickOnSearchButton" prefHeight="30.0" prefWidth="76.0" stylesheets="@main.css" text="Search" textAlignment="CENTER" textFill="#e8e6e0" AnchorPane.rightAnchor="147.0">
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
                      </font>

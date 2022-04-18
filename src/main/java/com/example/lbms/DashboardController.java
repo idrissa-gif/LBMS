@@ -2,11 +2,17 @@ package com.example.lbms;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.*;
@@ -19,6 +25,7 @@ import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
     public ImageView ImageViewAdmin;
+    public Hyperlink Newpassword;
     private String id;
 
     public void showImage(String id)
@@ -49,7 +56,7 @@ public class DashboardController implements Initializable {
     {
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(ImageViewAdmin.getScene().getWindow());
-        String ChangeQuery = "UPDATE Librarian SET image = ?, phone = 3 WHERE Lib_name = ?";
+        String ChangeQuery = "UPDATE Librarian SET image = ? WHERE Lib_name = ?";
         try {
             DatabaseConnection conn = new DatabaseConnection();
             PreparedStatement ps = conn.getConnection("root","admin123").prepareStatement(ChangeQuery);
@@ -69,9 +76,21 @@ public class DashboardController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+    @FXML
+    void changePassword() throws IOException {
+        Stage window = (Stage) Newpassword.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("ChangePassword.fxml"));
+        Scene scene = new Scene(root);
+        //Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(window);
+        stage.setScene(scene);
+        stage.show();
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        System.out.println(Main.user);
+        System.out.println(Main.user);
         showImage(Main.user);
 
     }

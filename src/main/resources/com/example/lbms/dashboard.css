@@ -1,20 +1,28 @@
-
-AnchorPane
+#HeaderPane
 {
-
-/*-fx-background-image:url('images/Books.png');*/
-  -fx-background-size: 100% 100%;
-}
-
-Button
-{
-  -fx-background-color: #004A00
-}
-
-Button:hover,MenuButton:hover
-{
-  -fx-background-color: #098500;
+-fx-background-color: linear-gradient(to right, #233329, #2FB166);
 }
 
 
+#BB{
+  //-fx-background-color: linear-gradient(to right, #37d5d6, #36096d);
+
+}
+
+#SearchButton:hover
+{
+  -fx-background-color: linear-gradient(to right, #3771A3, #3771A3);
+}	
+
+#P1,#P2{
+ -fx-background-color: #064306;
+ //-fx-background-color: linear-gradient(to right bottom, #3491AE , #332676 );
+}	
+
+
+#Profile{
+  -fx-background-color: #ffffff;
+  -fx-background-radius: 20px;
+  
+}
 

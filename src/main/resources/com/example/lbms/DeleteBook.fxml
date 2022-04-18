@@ -1,32 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lbms.DeleteBookController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="598.0" style="-fx-background-color: linear-gradient(to right, #233329, #2FB166);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lbms.DeleteBookController">
    <children>
-      <Label alignment="CENTER" layoutY="7.0" prefHeight="56.0" prefWidth="600.0" text="Remove Book" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Label alignment="CENTER" layoutY="7.0" prefHeight="56.0" prefWidth="600.0" text="Remove Book" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
-            <Font size="24.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="125.0" layoutY="87.0" prefHeight="17.0" prefWidth="109.0" text="Book ID" />
-      <Label layoutX="126.0" layoutY="126.0" prefHeight="17.0" prefWidth="97.0" text="Book Number" AnchorPane.leftAnchor="126.0" />
-      <Label layoutX="126.0" layoutY="168.0" prefHeight="17.0" prefWidth="97.0" text="Title" AnchorPane.leftAnchor="126.0" />
-      <Label layoutX="126.0" layoutY="265.0" prefHeight="17.0" prefWidth="71.0" text="ISBN" AnchorPane.leftAnchor="126.0" />
-      <Label layoutX="127.0" layoutY="218.0" prefHeight="17.0" prefWidth="97.0" text="Author" />
-      <Label fx:id="BookID" layoutX="230.0" layoutY="87.0" prefHeight="17.0" prefWidth="366.0" text="Display Import Number here" />
-      <Label fx:id="BookNumber" layoutX="229.0" layoutY="126.0" prefHeight="17.0" prefWidth="366.0" text="Display Book Number here" />
-      <Label fx:id="Author" layoutX="233.0" layoutY="218.0" prefHeight="17.0" prefWidth="206.0" text="Display Author here" />
-      <Label fx:id="BookTitle" layoutX="230.0" layoutY="168.0" prefHeight="17.0" prefWidth="366.0" text="Display Title here" />
-      <Label fx:id="ISBN" layoutX="233.0" layoutY="265.0" prefHeight="17.0" prefWidth="234.0" text="Display ISBN here" />
-      <Button fx:id="CancelButton" alignment="CENTER" contentDisplay="CENTER" layoutX="153.0" layoutY="324.0" mnemonicParsing="false" onAction="#ClickOnCancelButton" prefHeight="43.0" prefWidth="89.0" style="-fx-background-color: #004a00;" text="Cancel" textAlignment="CENTER" textFill="#f5f2f2" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="358.0">
+      <Label layoutX="125.0" layoutY="94.0" prefHeight="17.0" prefWidth="109.0" text="Book ID" textFill="WHITE">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label layoutX="126.0" layoutY="133.0" prefHeight="17.0" prefWidth="97.0" text="Book Number" textFill="WHITE" AnchorPane.leftAnchor="126.0">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label layoutX="126.0" layoutY="176.0" prefHeight="17.0" prefWidth="97.0" text="Title" textFill="WHITE" AnchorPane.leftAnchor="126.0">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label layoutX="128.0" layoutY="272.0" prefHeight="17.0" prefWidth="71.0" text="ISBN" textFill="WHITE" AnchorPane.leftAnchor="128.0">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label layoutX="127.0" layoutY="225.0" prefHeight="17.0" prefWidth="97.0" text="Author" textFill="WHITE">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label fx:id="BookID" layoutX="230.0" layoutY="94.0" prefHeight="17.0" prefWidth="366.0" style="-fx-background-color: white;" text="Display Import Number here">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="BookNumber" layoutX="229.0" layoutY="133.0" prefHeight="17.0" prefWidth="366.0" style="-fx-background-color: white;" text="Display Book Number here">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="Author" layoutX="231.0" layoutY="225.0" prefHeight="17.0" prefWidth="329.0" style="-fx-background-color: white;" text="Display Author here">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="BookTitle" layoutX="230.0" layoutY="175.0" prefHeight="17.0" prefWidth="366.0" style="-fx-background-color: white;" text="Display Title here">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="ISBN" layoutX="233.0" layoutY="272.0" prefHeight="17.0" prefWidth="234.0" style="-fx-background-color: white;" text="Display ISBN here">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Button fx:id="CancelButton" alignment="CENTER" contentDisplay="CENTER" layoutX="192.0" layoutY="336.0" mnemonicParsing="false" onAction="#ClickOnCancelButton" prefHeight="43.0" prefWidth="82.0" style="-fx-background-color: #004a00; -fx-background-radius: 15;" text="Cancel" textAlignment="CENTER" textFill="#f5f2f2" AnchorPane.leftAnchor="192.0" AnchorPane.rightAnchor="324.0">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="DeleteButton" alignment="CENTER" contentDisplay="CENTER" layoutX="368.0" layoutY="324.0" mnemonicParsing="false" onAction="#ClickOnDeleteButton" prefHeight="43.0" prefWidth="89.0" style="-fx-background-color: red;" text="Delete" textFill="#e8e1e1">
+      <Button fx:id="DeleteButton" alignment="CENTER" contentDisplay="CENTER" layoutX="350.0" layoutY="336.0" mnemonicParsing="false" onAction="#ClickOnDeleteButton" prefHeight="43.0" prefWidth="82.0" style="-fx-background-color: red; -fx-background-radius: 15;" text="Delete" textFill="#e8e1e1">
          <font>
             <Font size="14.0" />
          </font>

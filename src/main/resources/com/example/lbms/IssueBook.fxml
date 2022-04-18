@@ -6,23 +6,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lbms.IssueBookController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to right, #233329, #2FB166);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lbms.IssueBookController">
    <children>
-      <Label alignment="CENTER" layoutX="175.0" prefHeight="54.0" prefWidth="296.0" text="Book Issue">
+      <Label alignment="CENTER" layoutX="174.0" layoutY="22.0" prefHeight="54.0" prefWidth="296.0" text="Book Issue" textFill="WHITE">
          <font>
             <Font size="37.0" />
          </font></Label>
-      <Label layoutX="181.0" layoutY="117.0" text="Book Number:">
+      <Label layoutX="181.0" layoutY="117.0" text="Book Number:" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="181.0" layoutY="219.0" text="Student ID:">
+      <Label layoutX="181.0" layoutY="219.0" text="Student ID:" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="IssueButton" layoutX="285.0" layoutY="328.0" mnemonicParsing="false" onAction="#ClickOnIssueButton" prefHeight="42.0" prefWidth="73.0" text="Issue">
+      <Button fx:id="IssueButton" layoutX="285.0" layoutY="328.0" mnemonicParsing="false" onAction="#ClickOnIssueButton" prefHeight="42.0" prefWidth="73.0" style="-fx-background-radius: 15;" text="Issue">
          <font>
             <Font size="14.0" />
          </font>

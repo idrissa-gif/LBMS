@@ -5,28 +5,58 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: c;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" layoutY="14.0" prefHeight="56.0" prefWidth="600.0" text="Delete Student" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Label alignment="CENTER" layoutY="14.0" prefHeight="56.0" prefWidth="600.0" text="Delete Student" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="134.0" layoutY="87.0" prefHeight="17.0" prefWidth="80.0" text="First Name " />
-      <Label layoutX="134.0" layoutY="126.0" prefHeight="17.0" prefWidth="89.0" text="Last Name " AnchorPane.leftAnchor="134.0" />
-      <Label layoutX="134.0" layoutY="168.0" prefHeight="17.0" prefWidth="89.0" text="Student ID" AnchorPane.leftAnchor="134.0" />
-      <Label layoutX="134.0" layoutY="265.0" prefHeight="17.0" prefWidth="63.0" text="E-mail" AnchorPane.leftAnchor="134.0" />
-      <Label layoutX="135.0" layoutY="218.0" prefHeight="17.0" prefWidth="89.0" text="Sex" />
-      <Label layoutX="230.0" layoutY="87.0" prefHeight="17.0" prefWidth="234.0" text="Display First Name here" />
-      <Label layoutX="229.0" layoutY="126.0" prefHeight="17.0" prefWidth="234.0" text="Display Last Name here" />
-      <Label layoutX="233.0" layoutY="218.0" prefHeight="17.0" prefWidth="89.0" text="Display sex here" />
-      <Label layoutX="230.0" layoutY="168.0" prefHeight="17.0" prefWidth="234.0" text="Display ID here" />
-      <Label layoutX="233.0" layoutY="265.0" prefHeight="17.0" prefWidth="234.0" text="Display E-mail here" />
-      <Button fx:id="Enroll" alignment="CENTER" contentDisplay="CENTER" layoutX="176.0" layoutY="324.0" mnemonicParsing="false"  prefHeight="43.0" prefWidth="89.0" style="-fx-background-color: #004a00;" text="Cancel" textAlignment="CENTER" textFill="#f5f2f2" AnchorPane.leftAnchor="176.0" AnchorPane.rightAnchor="335.0">
+      <Label layoutX="134.0" layoutY="87.0" prefHeight="17.0" prefWidth="80.0" text="First Name " textFill="WHITE">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label layoutX="134.0" layoutY="126.0" prefHeight="17.0" prefWidth="89.0" text="Last Name " textFill="WHITE" AnchorPane.leftAnchor="134.0">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label layoutX="134.0" layoutY="168.0" prefHeight="17.0" prefWidth="89.0" text="Student ID" textFill="WHITE" AnchorPane.leftAnchor="134.0">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label layoutX="134.0" layoutY="265.0" prefHeight="17.0" prefWidth="63.0" text="E-mail" textFill="WHITE" AnchorPane.leftAnchor="134.0">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label layoutX="135.0" layoutY="218.0" prefHeight="17.0" prefWidth="89.0" text="Sex" textFill="WHITE">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label layoutX="230.0" layoutY="87.0" prefHeight="17.0" prefWidth="234.0" style="-fx-background-color: white;" text="Display First Name here">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="229.0" layoutY="126.0" prefHeight="17.0" prefWidth="234.0" style="-fx-background-color: white;" text="Display Last Name here">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="229.0" layoutY="218.0" prefHeight="17.0" prefWidth="89.0" style="-fx-background-color: white;" text="Gender">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="230.0" layoutY="168.0" prefHeight="17.0" prefWidth="234.0" style="-fx-background-color: white;" text="Display ID here">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="230.0" layoutY="265.0" prefHeight="17.0" prefWidth="234.0" style="-fx-background-color: white;" text="Display E-mail here">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Button fx:id="Enroll" alignment="CENTER" contentDisplay="CENTER" layoutX="176.0" layoutY="324.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="89.0" style="-fx-background-color: #004a00; -fx-background-radius: 15;" text="Cancel" textAlignment="CENTER" textFill="#f5f2f2" AnchorPane.leftAnchor="176.0" AnchorPane.rightAnchor="335.0">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="Enroll1" alignment="CENTER" contentDisplay="CENTER" layoutX="333.0" layoutY="324.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="89.0" style="-fx-background-color: red;" text="Delete" textFill="#e8e1e1">
+      <Button fx:id="Enroll1" alignment="CENTER" contentDisplay="CENTER" layoutX="333.0" layoutY="324.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="89.0" style="-fx-background-color: red; -fx-background-radius: 15;" text="Delete" textFill="#e8e1e1">
          <font>
             <Font size="14.0" />
          </font>

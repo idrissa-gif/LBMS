@@ -1,0 +1,21 @@
+
+GridPane{
+		
+-fx-background-color: #63d471;
+-fx-background-color: linear-gradient(to bottom left , #63d471 0%, #233329 74%);
+}
+
+
+background-color: #63d471;
+background-image: linear-gradient(315deg, #63d471 0%, #233329 74%);
+
+#ConnectButton1:hover
+{
+  -fx-background-color: linear-gradient(to right, white, #63d471);
+}
+
+
+#ConnectButton1{
+-fx-background-color: #40C310;
+-fx-background-radius: 20px;
+}

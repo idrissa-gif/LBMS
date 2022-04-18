@@ -1,15 +1,41 @@
-
-
-Button
+#P2
 {
- 
- -fx-background-color: #004A00
+-fx-background-color: #004A00;
+-fx-background-color: linear-gradient(to bottom, #233329, #30741E);
 }
 
-Button:hover,MenuButton:hover
+Button, #Profile{
+  -fx-background-color: #09A04A;
+  //-fx-background-color: linear-gradient(to right, white, green,#003a65 );
+  -fx-background-radius: 15px;
+
+}	
+
+ImageView{ 
+ -fx-background-radius: 15px;
+}	
+
+Button:hover
 {
-  -fx-background-color: #098500;
+  -fx-background-color: linear-gradient(to right, white , #004A00);
 }
+
+#HelloLabel{
+  //-fx-background-color: #233329;
+-fx-background-color: linear-gradient(to right  , #233329, #30741E);
+
+
+}
+
+
+	
+
+
+
+
+
+
+
 
 
 

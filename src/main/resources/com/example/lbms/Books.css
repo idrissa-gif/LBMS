@@ -1,0 +1,37 @@
+#HeaderPane
+{
+-fx-background-color: linear-gradient(to right, #233329, #297247, #233329);
+}
+
+
+AnchorPane{
+ 
+   -fx-background-color:  linear-gradient(to left ,  #297247,  #297247);
+
+ //-fx-background-color: linear-gradient(to bottom, #004A00, #004A00, white, white);
+}	
+
+
+#SearchButton:hover
+{
+  -fx-background-color: linear-gradient(to right, #004A00, #40C310);
+}	
+
+
+TableView{
+ 
+ -fx-text-fill:#ffffff;	
+ -fx-background-color: linear-gradient(to left, white, white );
+}	
+
+
+TableColumnHeader{
+  -fx-background-color: Transparent;
+}
+
+
+
+
+
+
+

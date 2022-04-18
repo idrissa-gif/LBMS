@@ -3,19 +3,23 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="694.0" stylesheets="@AdminCSS.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lbms.AdminController">
+<AnchorPane fx:id="P1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="694.0" stylesheets="@AdminCSS.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lbms.AdminController">
    <children>
-      <AnchorPane prefHeight="594.0" prefWidth="226.0" style="-fx-background-color: #004E00;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="P2" prefHeight="594.0" prefWidth="226.0" stylesheets="@main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="125.0" fitWidth="80.0" layoutX="66.0" layoutY="49.0">
+            <ImageView fitHeight="125.0" fitWidth="95.0" layoutX="68.0" layoutY="52.0">
                <image>
                   <Image url="@images/logo.jfif" />
                </image>
+               <effect>
+                  <Reflection fraction="0.5" />
+               </effect>
             </ImageView>
             <Button fx:id="DashBoardButton" graphicTextGap="45.0" layoutY="226.0" mnemonicParsing="false" onAction="#ClickOnDashBoardButton" prefHeight="47.0" prefWidth="230.0" stylesheets="@main.css" text="Dashboard" textAlignment="CENTER" textFill="WHITE">
                <graphic>
@@ -109,11 +113,11 @@
             </Button>
          </children>
       </AnchorPane>
-      <Label fx:id="HelloLabel" alignment="CENTER_RIGHT" layoutX="212.0" layoutY="-3.0" prefHeight="23.0" prefWidth="389.0" style="-fx-background-color: #004E00;" text="Hello Admin! " textFill="WHITE" AnchorPane.leftAnchor="212.0" AnchorPane.rightAnchor="-1.0">
+      <Label fx:id="HelloLabel" alignment="CENTER_RIGHT" layoutX="212.0" layoutY="-3.0" prefHeight="23.0" prefWidth="389.0" stylesheets="@main.css" text="Hello Admin! " textFill="WHITE" AnchorPane.leftAnchor="212.0" AnchorPane.rightAnchor="-1.0">
          <font>
             <Font name="Times New Roman Bold" size="20.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="MainPage" layoutX="229.0" layoutY="20.0" prefHeight="574.0" prefWidth="424.0" stylesheets="@AdminCSS.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="229.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+      <AnchorPane fx:id="MainPage" layoutX="229.0" layoutY="20.0" prefHeight="574.0" prefWidth="424.0" stylesheets="@main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="229.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
    </children>
 </AnchorPane>

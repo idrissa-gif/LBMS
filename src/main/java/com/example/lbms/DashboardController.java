@@ -1,5 +1,7 @@
 package com.example.lbms;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
@@ -7,10 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
 import java.sql.Blob;
 import java.sql.PreparedStatement;
@@ -20,16 +19,18 @@ import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
     public ImageView ImageViewAdmin;
+    private String id;
 
     public void showImage(String id)
     {
+        this.id = id;
         try
         {
             DatabaseConnection conn = new DatabaseConnection();
-            //String query = "SELECT image FROM Librarian WHERE Lib_name = ?";
-            String query = "SELECT imagefile FROM patronimage WHERE borrowernumber = 1";
+            String query = "SELECT image FROM Librarian WHERE Lib_name = ?";
+            //String query = "SELECT imagefile FROM patronimage WHERE borrowernumber = 1";
             PreparedStatement preparedStatement = conn.getConnection("root","admin123").prepareStatement(query);
-            //preparedStatement.setString(1,id);
+            preparedStatement.setString(1,id);
             ResultSet resultSet= preparedStatement.executeQuery();
             if(resultSet.next())
             {
@@ -43,20 +44,23 @@ public class DashboardController implements Initializable {
             System.out.println(e.getMessage());
         }
     }
-    void chooseFile_and_changeImage()
+    @FXML
+    private void chooseFile_and_changeImage(ActionEvent actionEvent) throws IOException
     {
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(ImageViewAdmin.getScene().getWindow());
-        String ChangeQuery = "INSERT INTO Librarian(image) VALUES(?) WHERE Lib_name = ?";
+        String ChangeQuery = "UPDATE Librarian SET image = ?, phone = 3 WHERE Lib_name = ?";
         try {
             DatabaseConnection conn = new DatabaseConnection();
             PreparedStatement ps = conn.getConnection("root","admin123").prepareStatement(ChangeQuery);
             FileInputStream fileInputStream = new FileInputStream(file);
-            ps.setBlob(1,(Blob) fileInputStream);
+            ps.setBlob(1, fileInputStream);
+            ps.setString(2,id);
             int count= ps.executeUpdate();
             if(count>0)
             {
-                showAlert(Alert.AlertType.INFORMATION,ImageViewAdmin.getScene().getWindow(),"Failed to Update the image ?","Try again please");
+                showAlert(Alert.AlertType.INFORMATION,ImageViewAdmin.getScene().getWindow(),"Updated","Successfully Updated");
+                showImage(id);
             }
         } catch (SQLException e)
         {
@@ -67,7 +71,7 @@ public class DashboardController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(Main.user);
+//        System.out.println(Main.user);
         showImage(Main.user);
 
     }

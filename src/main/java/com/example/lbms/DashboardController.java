@@ -10,8 +10,10 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -31,6 +33,12 @@ public class DashboardController implements Initializable {
     public BarChart Adminchart;
     public javafx.scene.chart.CategoryAxis CategoryAxis;
     public javafx.scene.chart.NumberAxis NumberAxis;
+    public Label RoleLabel;
+    public Label AddressLabel;
+    public Label phoneLabel;
+    public Label emailLabel;
+    public Label Namelabel;
+    public AnchorPane Profile;
     private String id;
 
     public void showImage(String id)
@@ -99,6 +107,7 @@ public class DashboardController implements Initializable {
         showImage(Main.user);
         try {
             showChart();
+            getUserInfo();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -132,5 +141,18 @@ public class DashboardController implements Initializable {
             Pendingseries.getData().add(new XYChart.Data<>("Pending",rs1.getInt(1)-rs2.getInt(1)));
         }
         Adminchart.getData().addAll(Borrowedseries,Returnseries,Pendingseries);
+    }
+    void getUserInfo() throws SQLException {
+        DatabaseConnection conn = new DatabaseConnection();
+        String query = "SELECT * FROM Librarian WHERE Lib_name = "+Main.user+"";
+        PreparedStatement ps = conn.getConnection("root","admin123").prepareStatement(query);
+        ResultSet rs = ps.executeQuery();
+        if(rs.next())
+        {
+            Namelabel.setText(rs.getString(2));
+            AddressLabel.setText(rs.getString(3));
+            phoneLabel.setText(rs.getString(4));
+            emailLabel.setText(rs.getString(5));
+        }
     }
 }

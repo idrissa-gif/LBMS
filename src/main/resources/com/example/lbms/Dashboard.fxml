@@ -24,7 +24,7 @@
                               <Image url="@images/images.png" />
                            </image>
                         </ImageView>
-                        <Hyperlink layoutX="29.0" layoutY="110.0" onAction="#chooseFile_and_changeImage" text="Change" />
+                        <Hyperlink layoutX="19.0" layoutY="110.0" onAction="#chooseFile_and_changeImage" text="Change" />
                      </children>
                   </AnchorPane>
                   <Pane layoutX="26.0" layoutY="180.0" prefHeight="33.0" prefWidth="261.0">
@@ -35,7 +35,7 @@
                               <Image url="@icons/username.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="96.0" layoutY="8.0" prefHeight="17.0" prefWidth="164.0" text="root" />
+                        <Label fx:id="Namelabel" layoutX="96.0" layoutY="8.0" prefHeight="17.0" prefWidth="164.0" text="root" />
                      </children>
                   </Pane>
                   <Pane layoutX="26.0" layoutY="255.0" prefHeight="33.0" prefWidth="313.0">
@@ -46,7 +46,7 @@
                               <Image url="@icons/email.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="95.0" layoutY="8.0" prefHeight="17.0" prefWidth="208.0" text="admin@iutlibrary-dhaka.edu" />
+                        <Label fx:id="emailLabel" layoutX="95.0" layoutY="8.0" prefHeight="17.0" prefWidth="208.0" text="admin@iutlibrary-dhaka.edu" />
                      </children>
                   </Pane>
                   <Pane layoutX="26.0" layoutY="295.0" prefHeight="33.0" prefWidth="261.0">
@@ -57,7 +57,7 @@
                               <Image url="@icons/phone.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="95.0" layoutY="8.0" prefHeight="17.0" prefWidth="164.0" text="01860963214" />
+                        <Label fx:id="phoneLabel" layoutX="95.0" layoutY="8.0" prefHeight="17.0" prefWidth="164.0" text="01860963214" />
                      </children>
                   </Pane>
                   <Pane layoutX="26.0" layoutY="339.0" prefHeight="33.0" prefWidth="261.0">
@@ -68,7 +68,7 @@
                               <Image url="@icons/address.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="95.0" layoutY="8.0" prefHeight="17.0" prefWidth="164.0" text="Kb Rd 1704 Gazipur" />
+                        <Label fx:id="AddressLabel" layoutX="95.0" layoutY="8.0" prefHeight="17.0" prefWidth="164.0" text="Kb Rd 1704 Gazipur" />
                      </children>
                   </Pane>
                   <Pane layoutX="27.0" layoutY="218.0" prefHeight="33.0" prefWidth="261.0">
@@ -79,7 +79,7 @@
                               <Image url="@icons/username.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="96.0" layoutY="8.0" prefHeight="17.0" prefWidth="164.0" text="Librarian" />
+                        <Label fx:id="RoleLabel" layoutX="96.0" layoutY="8.0" prefHeight="17.0" prefWidth="164.0" text="Librarian" />
                      </children>
                   </Pane>
                   <Hyperlink fx:id="Newpassword" layoutX="91.0" layoutY="391.0" onAction="#changePassword" text="Change Password" />

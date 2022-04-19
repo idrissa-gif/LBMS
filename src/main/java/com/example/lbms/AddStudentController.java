@@ -89,7 +89,11 @@ public class AddStudentController implements Initializable {
                 preparedStatement.setString(9,"F");
                 MaleCheckBox.setSelected(false);
             }
-            preparedStatement.executeUpdate();
+            int count = preparedStatement.executeUpdate();
+            if(count>0)
+            {
+                showAlert(Alert.AlertType.INFORMATION,Enroll.getScene().getWindow(),"Successfully!!","Successfully added" );
+            }
         }
         catch (SQLException e) {
             e.printStackTrace();

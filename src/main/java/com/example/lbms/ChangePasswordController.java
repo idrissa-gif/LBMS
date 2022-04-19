@@ -25,16 +25,22 @@ public class ChangePasswordController implements Initializable {
 
     }
 
-    public void ClickOnCancelButton(ActionEvent actionEvent) {
+    public void ClickOnCancelButton() {
         Stage window = (Stage) CancelButton.getScene().getWindow();
         window.close();
     }
 
     public void ClickOnChangeButton(ActionEvent actionEvent) throws SQLException {
         DatabaseConnection conn = new DatabaseConnection();
-        if(NewPasswordTextField.getText().equals(ConformationTextField.getText()))
+        if(NewPasswordTextField.getText().isEmpty()||ConformationTextField.getText().isEmpty()||ConformationTextField.getText().isEmpty())
         {
-            String query = "UPDATE Librarian SET password = '"+ DigestUtils.sha3_256Hex(NewPasswordTextField.getText())+"' WHERE Lib_name = '"+Main.user+"'";
+            showAlert(Alert.AlertType.WARNING,ChangeButton.getScene().getWindow(),"Warning","One of the password field is empty please make sure they are not empty");
+            return ;
+        }
+
+        else if(NewPasswordTextField.getText().equals(ConformationTextField.getText()))
+        {
+            String query = "UPDATE Librarian SET password = '"+ DigestUtils.sha3_256Hex(NewPasswordTextField.getText())+"' WHERE Lib_name = '"+Main.user+"' AND password = '"+DigestUtils.sha3_256Hex(currentPasswordTextField.getText())+"'";
             PreparedStatement preparedStatement = conn.getConnection("root","admin123").prepareStatement(query);
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
@@ -49,8 +55,21 @@ public class ChangePasswordController implements Initializable {
                 if(count>0)
                 {
                     showAlert(Alert.AlertType.INFORMATION,ChangeButton.getScene().getWindow(),"Successfully","Password successfully Updated");
+                    ClickOnCancelButton();
+                }
+                else
+                {
+                    NewPasswordTextField.clear();
+                    currentPasswordTextField.clear();
+                    ConformationTextField.clear();
+                    showAlert(Alert.AlertType.WARNING,ChangeButton.getScene().getWindow(),"Failed","The current password is incorrect please try again");
                 }
             }
+
+        }
+        else
+        {
+            showAlert(Alert.AlertType.INFORMATION,ChangeButton.getScene().getWindow(),"Warning","Entered Passwords doesn't match,please try again");
 
         }
     }

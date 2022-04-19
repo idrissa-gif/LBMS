@@ -35,7 +35,7 @@
                               <Image url="@icons/username.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="96.0" layoutY="8.0" prefHeight="17.0" prefWidth="164.0" text="Admin 1" />
+                        <Label layoutX="96.0" layoutY="8.0" prefHeight="17.0" prefWidth="164.0" text="root" />
                      </children>
                   </Pane>
                   <Pane layoutX="26.0" layoutY="255.0" prefHeight="33.0" prefWidth="313.0">
@@ -103,10 +103,10 @@
       </AnchorPane>
       <BarChart fx:id="Adminchart" layoutX="349.0" layoutY="109.0" prefHeight="440.0" prefWidth="460.0" AnchorPane.leftAnchor="349.0" AnchorPane.rightAnchor="0.0">
         <xAxis>
-          <CategoryAxis side="BOTTOM" />
+          <CategoryAxis fx:id="CategoryAxis" side="BOTTOM" />
         </xAxis>
         <yAxis>
-          <NumberAxis side="LEFT" />
+          <NumberAxis fx:id="NumberAxis" side="LEFT" />
         </yAxis>
       </BarChart>
    </children>

@@ -13,21 +13,17 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="121.0" layoutY="137.0" prefHeight="17.0" prefWidth="89.0" text="Book Number" AnchorPane.leftAnchor="120.0" />
-      <TextField fx:id="BookNumberTextField" layoutX="235.0" layoutY="132.0" prefHeight="25.0" prefWidth="260.0" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="105.0" />
-      <Label layoutX="118.0" layoutY="179.0" prefHeight="17.0" prefWidth="89.0" text="Book Title" AnchorPane.leftAnchor="120.0" />
-      <TextField fx:id="TitleTextField" layoutX="235.0" layoutY="174.0" prefHeight="25.0" prefWidth="260.0" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="105.0" />
-      <Button fx:id="CancelButton" alignment="CENTER" contentDisplay="CENTER" layoutX="168.0" layoutY="473.0" mnemonicParsing="false" onAction="#ClickonCancelButton" prefHeight="43.0" prefWidth="89.0" style="-fx-background-color: #004a00;" text="Cancel" textFill="WHITE" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="343.0" />
-      <Label layoutX="121.0" layoutY="220.0" prefHeight="17.0" prefWidth="89.0" text="Author" />
-      <TextField fx:id="AuthorTextField" layoutX="234.0" layoutY="215.0" prefHeight="25.0" prefWidth="260.0" />
-      <Label layoutX="121.0" layoutY="262.0" prefHeight="17.0" prefWidth="89.0" text="ISBN" />
-      <TextField fx:id="ISBNTextField" layoutX="234.0" layoutY="257.0" prefHeight="25.0" prefWidth="260.0" />
-      <Button fx:id="AddBookButton" alignment="CENTER" contentDisplay="CENTER" layoutX="394.0" layoutY="473.0" mnemonicParsing="false" onAction="#ClickAddBookButton" prefHeight="43.0" prefWidth="89.0" style="-fx-background-color: #004a00;" text="Add" textFill="WHITE" />
-      <Label layoutX="122.0" layoutY="302.0" prefHeight="17.0" prefWidth="114.0" text="Frameworkcode" />
-      <TextField fx:id="ISBNTextField1" layoutX="235.0" layoutY="297.0" prefHeight="25.0" prefWidth="260.0" />
-      <Label layoutX="119.0" layoutY="339.0" prefHeight="17.0" prefWidth="89.0" text="Framecode" />
-      <TextField fx:id="ISBNTextField11" layoutX="232.0" layoutY="334.0" prefHeight="25.0" prefWidth="260.0" />
-      <Label layoutX="120.0" layoutY="386.0" prefHeight="17.0" prefWidth="89.0" text="Framecode" />
-      <TextField fx:id="ISBNTextField111" layoutX="233.0" layoutY="381.0" prefHeight="25.0" prefWidth="260.0" />
+      <Label layoutX="120.0" layoutY="153.0" prefHeight="17.0" prefWidth="89.0" text="Book Title" AnchorPane.leftAnchor="120.0" />
+      <TextField fx:id="TitleTextField" layoutX="235.0" layoutY="148.0" prefHeight="25.0" prefWidth="260.0" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="105.0" />
+      <Button fx:id="CancelButton" alignment="CENTER" contentDisplay="CENTER" layoutX="168.0" layoutY="430.0" mnemonicParsing="false" onAction="#ClickonCancelButton" prefHeight="43.0" prefWidth="89.0" style="-fx-background-color: #004a00;" text="Cancel" textFill="WHITE" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="343.0" />
+      <Label layoutX="121.0" layoutY="194.0" prefHeight="17.0" prefWidth="89.0" text="Author" />
+      <TextField fx:id="AuthorTextField" layoutX="234.0" layoutY="189.0" prefHeight="25.0" prefWidth="260.0" />
+      <Label layoutX="121.0" layoutY="236.0" prefHeight="17.0" prefWidth="89.0" text="ISBN" />
+      <TextField fx:id="ISBNTextField" layoutX="234.0" layoutY="231.0" prefHeight="25.0" prefWidth="260.0" />
+      <Button fx:id="AddBookButton" alignment="CENTER" contentDisplay="CENTER" layoutX="394.0" layoutY="430.0" mnemonicParsing="false" onAction="#ClickAddBookButton" prefHeight="43.0" prefWidth="89.0" style="-fx-background-color: #004a00;" text="Add" textFill="WHITE" />
+      <Label layoutX="122.0" layoutY="276.0" prefHeight="17.0" prefWidth="114.0" text="Frameworkcode" />
+      <TextField fx:id="FrameworkcodeTextField" layoutX="235.0" layoutY="271.0" prefHeight="25.0" prefWidth="260.0" />
+      <Label layoutX="119.0" layoutY="318.0" prefHeight="17.0" prefWidth="114.0" text="Copy right date" />
+      <TextField fx:id="CopyrightTextField" layoutX="233.0" layoutY="314.0" prefHeight="25.0" prefWidth="260.0" />
    </children>
 </AnchorPane>

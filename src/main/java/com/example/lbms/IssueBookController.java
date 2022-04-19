@@ -62,34 +62,34 @@ public class IssueBookController implements Initializable {
             LoginController.showAlert(Alert.AlertType.WARNING,IssueButton.getScene().getWindow(),"Input ERROR","Book ID input is not number");
             return;
         }
-        int status, issue_id, borrownumber = Integer.parseInt(String.valueOf(StudentIDTextField.getText()));
+        int status, issue_id;
+        String cardnumber =StudentIDTextField.getText();
         int itemnumber = Integer.parseInt(String.valueOf(BookNumberTextField.getText()));
         Random random = new Random();
         String Query = "INSERT issue_id,borrowernumber FROM issues";
         java.util.Date date = new java.util.Date();
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
         java.sql.Timestamp sqlTime = new java.sql.Timestamp(date.getTime());
-        String query = "insert into issues (issue_id,borrowernumber,itemnumber,date_due,branchcode,returndate) values(?,?,?,?,'UITLIB',curdate()+interval 4 month)";
+        String branch ="IUTL";
+        String query = "insert into issues (borrowernumber,itemnumber,date_due,branchcode,returndate) values((SELECT borrowernumber FROM borrowers WHERE cardnumber = '"+cardnumber+"'),?,curdate()+interval 4 month,'UITLIB',?)";
+        String query1 = "INSERT INTO statistics(datetime,branch,value,type,itemnumber,borrowernumber) VALUES('"+sqlTime+"','"+branch+"',0.00,'issue','"+itemnumber+"',(SELECT borrowernumber FROM borrowers WHERE cardnumber = '"+cardnumber+"')) ";
         DatabaseConnection conn = new DatabaseConnection();
         PreparedStatement ps = conn.getConnection("root", "admin123").prepareStatement(query);
-        issue_id = random.nextInt(1, 10000000);
-        System.out.println(issue_id);
-        ps.setDate(4, sqlDate);
-        ps.setTimestamp(4, sqlTime);
-        ps.setInt(1, issue_id);
-        ps.setInt(2, borrownumber);
-        ps.setInt(3, itemnumber);
+        PreparedStatement ps1 = conn.getConnection("root", "admin123").prepareStatement(query1);
+        ps.setDate(2, sqlDate);
+        ps.setInt(1, itemnumber);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText(null);
-        alert.setContentText("Do you really want to remove this student ?");
+        alert.setContentText("Do you want to issue to this student ?");
         alert.initOwner(IssueButton.getScene().getWindow());
         Optional<ButtonType> RES = alert.showAndWait();
         if(RES.get()==ButtonType.OK)
         {
             status = ps.executeUpdate();
+            int cnt = ps1.executeUpdate();
             ps.close();
-            if(status>0)
+            if(status>0&&cnt>0)
             {
                 System.out.println("Successul query Execution");
                 LoginController.showAlert(Alert.AlertType.INFORMATION,IssueButton.getScene().getWindow(),"Operation Successful","Book "+BookNumberTextField.getText()+ " Successfully Issued to"+" Student ID "+StudentIDTextField.getText());

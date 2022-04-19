@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -26,6 +27,9 @@ public class AdminController implements Initializable {
     public AnchorPane MainPage;
 
     @FXML
+    private Label HelloLabel;
+
+    @FXML
     private ImageView ImageViewadmin;
     private Parent root;
     private Stage stage;
@@ -36,6 +40,7 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            HelloLabel.setText("Hello "+Main.user);
             AnchorPane node =  FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
             AnchorPane.setLeftAnchor(node,0.0);
             AnchorPane.setRightAnchor(node,0.0);

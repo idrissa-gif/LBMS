@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
@@ -26,6 +28,9 @@ import java.util.ResourceBundle;
 public class DashboardController implements Initializable {
     public ImageView ImageViewAdmin;
     public Hyperlink Newpassword;
+    public BarChart Adminchart;
+    public javafx.scene.chart.CategoryAxis CategoryAxis;
+    public javafx.scene.chart.NumberAxis NumberAxis;
     private String id;
 
     public void showImage(String id)
@@ -90,9 +95,13 @@ public class DashboardController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(Main.user);
+        //System.out.println(Main.user);
         showImage(Main.user);
-
+        try {
+            showChart();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     public void showAlert(Alert.AlertType error, Window wind, String Tittle, String message) {
         Alert alert = new Alert(error);
@@ -101,5 +110,27 @@ public class DashboardController implements Initializable {
         alert.setContentText(message);
         alert.initOwner(wind);
         alert.show();
+    }
+    public void showChart() throws SQLException {
+        XYChart.Series<String , Integer> Borrowedseries = new XYChart.Series<>();
+        XYChart.Series<String , Integer> Returnseries = new XYChart.Series<>();
+        XYChart.Series<String , Integer> Pendingseries = new XYChart.Series<>();
+        Borrowedseries.setName("Books Borrowed");
+        Returnseries.setName("Books Returned");
+        Pendingseries.setName("Books Pending");
+        DatabaseConnection conn = new DatabaseConnection();
+        String query1 = "SELECT COUNT(*) FROM issues";
+        String query2 = "SELECT COUNT(*) FROM old_issues";
+        PreparedStatement ps1 = conn.getConnection("root","admin123").prepareStatement(query1);
+        PreparedStatement ps2 = conn.getConnection("root","admin123").prepareStatement(query2);
+        ResultSet rs1 = ps1.executeQuery();
+        ResultSet rs2 = ps2.executeQuery();
+        if(rs1.next()&& rs2.next())
+        {
+            Borrowedseries.getData().add(new XYChart.Data<>("Borrowed",rs1.getInt(1)));
+            Returnseries.getData().add(new XYChart.Data<>("Returned",rs2.getInt(1)));
+            Pendingseries.getData().add(new XYChart.Data<>("Pending",rs1.getInt(1)-rs2.getInt(1)));
+        }
+        Adminchart.getData().addAll(Borrowedseries,Returnseries,Pendingseries);
     }
 }

@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
+    //username = "root" and password = admin
     public static Connection connectionNow;
     public AnchorPane LoginAnchorpane;
     @FXML

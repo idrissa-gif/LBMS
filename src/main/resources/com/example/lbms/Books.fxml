@@ -20,12 +20,10 @@
                <columns>
                   <TableColumn fx:id="EditDelTableColumn" minWidth="15.0" prefWidth="103.0" text="Edit/Delete" />
                   <TableColumn fx:id="BookIdTableColumn" minWidth="15.0" prefWidth="127.0" text="Book Id" />
-                  <TableColumn fx:id="BookNumberTableColumn" minWidth="15.0" prefWidth="104.0" text="Book Number" />
-                  <TableColumn fx:id="TitleTableColumn" minWidth="15.0" prefWidth="203.0" text="Title" />
-                  <TableColumn fx:id="AuthorColumn" minWidth="15.0" prefWidth="94.0" text="Author" />
-                  <TableColumn fx:id="ISBNColumn" minWidth="12.0" prefWidth="91.0" text="ISBN" />
-                  <TableColumn fx:id="BibioTableColumn" minWidth="15.0" prefWidth="104.0" text="BibioNumber" />
-                  <TableColumn fx:id="StatusTableColumn" minWidth="15.0" prefWidth="104.0" text="Status" />
+                  <TableColumn fx:id="TitleTableColumn" minWidth="15.0" prefWidth="104.0" text="Title" />
+                  <TableColumn fx:id="AuthorColumn" minWidth="15.0" prefWidth="203.0" text="Author" />
+                  <TableColumn fx:id="CopiesColumn" minWidth="15.0" prefWidth="94.0" text="# Copies" />
+                  <TableColumn fx:id="CopyrightTableColumn" minWidth="15.0" prefWidth="104.0" text="Copryright date" />
                </columns>
             </TableView>
          </children>

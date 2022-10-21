@@ -144,7 +144,7 @@ public class DashboardController implements Initializable {
     }
     void getUserInfo() throws SQLException {
         DatabaseConnection conn = new DatabaseConnection();
-        String query = "SELECT * FROM Librarian WHERE Lib_name = "+Main.user+"";
+        String query = "SELECT * FROM Librarian WHERE Lib_name = '"+Main.user+"'";
         PreparedStatement ps = conn.getConnection("root","admin123").prepareStatement(query);
         ResultSet rs = ps.executeQuery();
         if(rs.next())

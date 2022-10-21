@@ -11,18 +11,19 @@ public class EditBookController implements Initializable {
     public TextField BookIDTextField;
     public TextField BookTitleTextField;
     public TextField AuthorTextField;
-    public TextField ISBNTextField;
-    public TextField CellTextField;
     public Button EditButton;
+    public TextField CopyrightdateTextField;
+    public TextField CopiesTextField;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
 
-    void setTextField(String Booknumber, String title, String author, String isbn,String cellno) {
-        BookIDTextField.setText(Booknumber); ;
+    void setTextField(Integer Bookid, String title, String author, String copyrightdate,Integer Booknum) {
+        BookIDTextField.setText(String.valueOf(Bookid)); ;
         BookTitleTextField.setText(title);
         AuthorTextField.setText(author);
-        ISBNTextField.setText(isbn);
+        CopyrightdateTextField.setText(copyrightdate);
+        CopiesTextField.setText(String.valueOf(Booknum));
     }
 }

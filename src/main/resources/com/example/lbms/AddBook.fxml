@@ -19,7 +19,9 @@
       <Label layoutX="121.0" layoutY="222.0" prefHeight="17.0" prefWidth="89.0" text="Author" />
       <TextField fx:id="AuthorTextField" layoutX="234.0" layoutY="217.0" prefHeight="25.0" prefWidth="260.0" />
       <Button fx:id="AddBookButton" alignment="CENTER" contentDisplay="CENTER" layoutX="394.0" layoutY="430.0" mnemonicParsing="false" onAction="#ClickAddBookButton" prefHeight="43.0" prefWidth="89.0" style="-fx-background-color: #004a00;" text="Add" textFill="WHITE" />
-      <Label layoutX="121.0" layoutY="289.0" prefHeight="17.0" prefWidth="114.0" text="Copy right date" />
+      <Label layoutX="121.0" layoutY="289.0" prefHeight="17.0" prefWidth="114.0" text="Copyright date" />
       <TextField fx:id="CopyrightTextField" layoutX="235.0" layoutY="285.0" prefHeight="25.0" prefWidth="260.0" />
+      <Label layoutX="121.0" layoutY="349.0" prefHeight="17.0" prefWidth="114.0" text="Copies" />
+      <TextField fx:id="CopiesTextField" layoutX="235.0" layoutY="345.0" prefHeight="25.0" prefWidth="260.0" />
    </children>
 </AnchorPane>

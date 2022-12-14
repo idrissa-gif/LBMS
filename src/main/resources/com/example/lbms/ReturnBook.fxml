@@ -29,9 +29,9 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="BookNumberTextField" layoutX="226.0" layoutY="119.0" />
-      <TextField fx:id="StudentIDTextField" layoutX="238.0" layoutY="259.0" />
-      <TableView fx:id="BookTableView" layoutY="161.0" onMouseExited="#MouseExitedBook" prefHeight="87.0" prefWidth="600.0" tableMenuButtonVisible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <TextField fx:id="BookNumberTextField" layoutX="226.0" layoutY="119.0" onMouseExited="#MouseExitedBook" />
+      <TextField fx:id="StudentIDTextField" layoutX="238.0" layoutY="259.0" onMouseExited="#MouseExitedStudent" />
+      <TableView fx:id="BookTableView" layoutY="161.0" prefHeight="87.0" prefWidth="600.0" tableMenuButtonVisible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <columns>
             <TableColumn fx:id="BookIdTableColumn" minWidth="15.0" prefWidth="127.0" text="Book Id" />
             <TableColumn fx:id="TitleTableColumn" minWidth="15.0" prefWidth="104.0" text="Title" />

@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
@@ -32,14 +33,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class StudentController implements Initializable {
-    public  TableView<Student> StudentTableView;
-    public  TableColumn<Student, String> IdTableColumn;
-    public  TableColumn<Student, String> FirstNameTableColumn;
-    public  TableColumn<Student, String> LastNameTableColumn;
-    public  TableColumn <Student, String> PhoneTableColumn;
-    public  TableColumn <Student, String> AddressTableColumn;
-    public  TableColumn <Student, String> CountryTableColumn;
-    public  TableColumn<Student, String> EmailTableColumn;
+    public TableView<Student> StudentTableView;
+    public TableColumn<Student, String> IdTableColumn;
+    public TableColumn<Student, String> FirstNameTableColumn;
+    public TableColumn<Student, String> LastNameTableColumn;
+    public TableColumn<Student, String> PhoneTableColumn;
+    public TableColumn<Student, String> AddressTableColumn;
+    public TableColumn<Student, String> CountryTableColumn;
+    public TableColumn<Student, String> EmailTableColumn;
+    //used in the StudentBorrowedBKcontroller
+    public static Integer borrowernum = 1;
     public Button SearchButton;
     public Button DeleteStudentButton;
     public TextField SearchTextFiled;
@@ -68,7 +71,7 @@ public class StudentController implements Initializable {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                oblist.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),rs.getString(7)));
+                oblist.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -86,13 +89,13 @@ public class StudentController implements Initializable {
     public void ClickOnSearchButton(ActionEvent actionEvent) {
         StudentTableView.getItems().clear();
         try {
-            String query = "SELECT cardnumber ,surname,firstname , phone , address ,country ,email from borrowers where cardnumber LIKE '%"+SearchTextFiled.getText()+"%' OR surname LIKE '%"+SearchTextFiled.getText()+"%'OR firstname LIKE '%"+SearchTextFiled.getText()+"%'OR email LIKE '%"+SearchTextFiled.getText()+"%' ";
+            String query = "SELECT cardnumber ,surname,firstname , phone , address ,country ,email from borrowers where cardnumber LIKE '%" + SearchTextFiled.getText() + "%' OR surname LIKE '%" + SearchTextFiled.getText() + "%'OR firstname LIKE '%" + SearchTextFiled.getText() + "%'OR email LIKE '%" + SearchTextFiled.getText() + "%' ";
             DatabaseConnection conn = new DatabaseConnection();
             PreparedStatement ps = conn.getConnection("root", "admin123").prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                oblist.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),rs.getString(7)));
+                oblist.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -120,11 +123,11 @@ public class StudentController implements Initializable {
     }
 
     public void PressOnKeyStrokes(KeyEvent keyEvent) {
-        if(keyEvent.getCode()== keyEvent.getCode().ENTER)
-        {
+        if (keyEvent.getCode() == keyEvent.getCode().ENTER) {
             ClickOnSearchButton(new ActionEvent());
         }
     }
+
     private void loadDate() throws SQLException {
 
         refreshTableView();
@@ -154,18 +157,17 @@ public class StudentController implements Initializable {
                         deleteIcon.setOnMouseClicked((MouseEvent event) -> {
 
                             try {
-                                Student student =StudentTableView.getSelectionModel().getSelectedItem();
-                                String query = "DELETE FROM borrowers WHERE cardnumber='"+student.getId()+"'";
+                                Student student = StudentTableView.getSelectionModel().getSelectedItem();
+                                String query = "DELETE FROM borrowers WHERE cardnumber='" + student.getId() + "'";
                                 DatabaseConnection conn = new DatabaseConnection();
                                 PreparedStatement ps = conn.getConnection("root", "admin123").prepareStatement(query);
                                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                                 alert.setTitle("Delete Conformation?");
                                 alert.setHeaderText(null);
-                                alert.setContentText("Do you really can to delete the Student ID "+student.getId());
+                                alert.setContentText("Do you really can to delete the Student ID " + student.getId());
                                 alert.initOwner(StudentTableView.getScene().getWindow());
                                 Optional<ButtonType> RES = alert.showAndWait();
-                                if(RES.get() == ButtonType.OK)
-                                {
+                                if (RES.get() == ButtonType.OK) {
                                     ps.execute();
                                     refreshTableView();
                                 }
@@ -176,7 +178,7 @@ public class StudentController implements Initializable {
                         });
                         editIcon.setOnMouseClicked((MouseEvent event) -> {
                             Student student = StudentTableView.getSelectionModel().getSelectedItem();
-                            FXMLLoader loader = new FXMLLoader ();
+                            FXMLLoader loader = new FXMLLoader();
                             loader.setLocation(getClass().getResource("EditStudent.fxml"));
                             try {
                                 loader.load();
@@ -186,7 +188,7 @@ public class StudentController implements Initializable {
                             Stage window = (Stage) editIcon.getScene().getWindow();
 
                             EditStudentController editStudentController = loader.getController();
-                            editStudentController.setTextField(student.getId(), student.getFname(),student.getLname(),student.getAddress(),student.getPhone(), student.getEmail(),student.getCountry());
+                            editStudentController.setTextField(student.getId(), student.getFname(), student.getLname(), student.getAddress(), student.getPhone(), student.getEmail(), student.getCountry());
                             Parent parent = loader.getRoot();
 
                             Stage stage = new Stage();
@@ -214,4 +216,28 @@ public class StudentController implements Initializable {
         EditDelTableColumn.setCellFactory(cellFoctory);
         StudentTableView.setItems(oblist);
     }
+
+    public void GetStudentIdValues() {
+        Student student = StudentTableView.getItems().get(StudentTableView.getSelectionModel().getSelectedIndex());
+        borrowernum = Integer.valueOf(student.getId());
+    }
+
+    public void StudentBorrowedbooks(MouseEvent mouseEvent) throws IOException {
+        if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+            if (mouseEvent.getClickCount() == 2) {
+
+                GetStudentIdValues();
+                Stage window = (Stage) StudentTableView.getScene().getWindow();
+                Parent page = FXMLLoader.load(getClass().getResource("StudentBorrowedBK.fxml"));
+                Scene scene = new Scene(page);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.initOwner(window);
+                stage.setScene(scene);
+                stage.show();
+            }
+        }
+    }
+
 }
+

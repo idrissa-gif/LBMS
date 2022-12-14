@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
@@ -35,6 +36,7 @@ public class BookController implements Initializable {
     public Button SearchButton;
     public TableView <Book>BookTableView;
     public TableColumn<Book,String> BookIdTableColumn;
+
     public TableColumn <Book,String>TitleTableColumn;
     public TableColumn <Book,String>AuthorColumn;
     public TableColumn <Book,Integer> CopiesColumn;
@@ -43,6 +45,7 @@ public class BookController implements Initializable {
     public TextField SearchTextFiled;
     public FontAwesomeIconView AddBookButton;
     public FontAwesomeIconView DelBookButton;
+    public static Integer bookid = 1;
 
 
     @FXML
@@ -208,5 +211,25 @@ public class BookController implements Initializable {
         };
         EditDelTableColumn.setCellFactory(cellFoctory);
         BookTableView.setItems(oblist);
+    }
+
+    public void GetBookIdValues() {
+        Book book = BookTableView.getItems().get(BookTableView.getSelectionModel().getSelectedIndex());
+        bookid = Integer.valueOf(book.getBookID());
+    }
+    public void ViewBookBorrowedbySt(MouseEvent mouseEvent) throws IOException {
+        if(mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+            if(mouseEvent.getClickCount()==2) {
+                GetBookIdValues();
+                Stage window = (Stage) BookTableView.getScene().getWindow();
+                Parent page = FXMLLoader.load(getClass().getResource("BookBorrowedBkBySt.fxml"));
+                Scene scene = new Scene(page);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.initOwner(window);
+                stage.setScene(scene);
+                stage.show();
+            }
+        }
     }
 }

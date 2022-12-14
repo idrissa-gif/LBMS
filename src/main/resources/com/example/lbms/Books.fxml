@@ -16,7 +16,7 @@
    <children>
       <AnchorPane fx:id="P2" layoutY="183.0" prefHeight="369.0" prefWidth="638.0" stylesheets="@Books.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <TableView fx:id="BookTableView" layoutY="16.0" prefHeight="384.0" prefWidth="638.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="-31.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="16.0">
+            <TableView fx:id="BookTableView" layoutY="16.0" onMouseClicked="#ViewBookBorrowedbySt" prefHeight="384.0" prefWidth="638.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="-31.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="16.0">
                <columns>
                   <TableColumn fx:id="EditDelTableColumn" minWidth="15.0" prefWidth="103.0" text="Edit/Delete" />
                   <TableColumn fx:id="BookIdTableColumn" minWidth="15.0" prefWidth="127.0" text="Book Id" />

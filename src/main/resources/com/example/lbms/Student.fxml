@@ -18,7 +18,7 @@
          <children>
             <AnchorPane layoutY="193.0" prefHeight="428.0" prefWidth="638.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <TableView fx:id="StudentTableView" layoutY="-7.0" prefHeight="435.0" prefWidth="638.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-7.0">
+                  <TableView fx:id="StudentTableView" layoutY="-7.0" onMouseClicked="#StudentBorrowedbooks" prefHeight="435.0" prefWidth="638.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-7.0">
                     <columns>
                         <TableColumn fx:id="EditDelTableColumn" minWidth="15.0" prefWidth="92.0" text="Edit/Delete" />
                       <TableColumn fx:id="IdTableColumn" minWidth="15.0" prefWidth="92.0" text="ID" />

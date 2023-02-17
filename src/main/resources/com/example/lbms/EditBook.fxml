@@ -9,32 +9,32 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to right, #233329, #2FB166);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lbms.EditBookController">
    <children>
       <TextField fx:id="BookIDTextField" layoutX="215.0" layoutY="108.0" prefHeight="25.0" prefWidth="186.0" />
-      <Label layoutX="142.0" layoutY="108.0" prefHeight="24.0" prefWidth="73.0" text="Book ID" textFill="WHITE">
+      <Label layoutX="115.0" layoutY="108.0" prefHeight="24.0" prefWidth="100.0" text="Book ID" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Label>
       <TextField fx:id="BookTitleTextField" layoutX="215.0" layoutY="142.0" prefHeight="25.0" prefWidth="186.0" />
-      <Label layoutX="142.0" layoutY="142.0" prefHeight="24.0" prefWidth="73.0" text="Book Title" textFill="WHITE">
+      <Label layoutX="115.0" layoutY="142.0" prefHeight="24.0" prefWidth="100.0" text="Book Title" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Label>
       <TextField fx:id="AuthorTextField" layoutX="215.0" layoutY="176.0" prefHeight="25.0" prefWidth="186.0" />
-      <Label layoutX="142.0" layoutY="176.0" prefHeight="24.0" prefWidth="73.0" text="Author" textFill="WHITE">
+      <Label layoutX="115.0" layoutY="176.0" prefHeight="24.0" prefWidth="100.0" text="Author" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <TextField fx:id="ISBNTextField" layoutX="215.0" layoutY="210.0" prefHeight="25.0" prefWidth="186.0" />
-      <Label layoutX="142.0" layoutY="210.0" prefHeight="24.0" prefWidth="73.0" text="ISBN" textFill="WHITE">
+      <TextField fx:id="CopyrightdateTextField" layoutX="215.0" layoutY="210.0" prefHeight="25.0" prefWidth="186.0" />
+      <Label layoutX="113.0" layoutY="211.0" prefHeight="24.0" prefWidth="94.0" text="Copy right" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <TextField fx:id="CellTextField" layoutX="215.0" layoutY="242.0" prefHeight="25.0" prefWidth="186.0" />
-      <Label layoutX="142.0" layoutY="242.0" prefHeight="24.0" prefWidth="73.0" text="Cell" textFill="WHITE">
+      <TextField fx:id="CopiesTextField" layoutX="215.0" layoutY="242.0" prefHeight="25.0" prefWidth="186.0" />
+      <Label layoutX="115.0" layoutY="242.0" prefHeight="24.0" prefWidth="100.0" text="Copies" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Button fx:id="EditButton" layoutX="280.0" layoutY="293.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="51.0" text="Edit" />
-      <Label layoutX="189.0" prefHeight="84.0" prefWidth="233.0" text="EDIT BOOK DETAILS" textFill="WHITE">
+      <Button fx:id="EditbookButton" layoutX="280.0" layoutY="293.0" mnemonicParsing="false" onAction="#ClickOnEditButton" prefHeight="25.0" prefWidth="51.0" text="Edit" />
+      <Label layoutX="158.0" prefHeight="84.0" prefWidth="318.0" text="EDIT BOOK DETAILS" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

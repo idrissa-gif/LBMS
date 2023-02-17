@@ -1,0 +1,8 @@
+TableView
+{
+   -fx-background-color: linear-gradient(to right, #3329, #4247, #3329);
+}
+#HeaderPane
+{
+    -fx-background-color: linear-gradient(to left, #233320,#298341,#233320);
+}

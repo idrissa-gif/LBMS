@@ -31,5 +31,6 @@ public class DeleteBookController implements Initializable {
     }
 
     public void ClickOnDeleteButton(ActionEvent actionEvent) {
+
     }
 }

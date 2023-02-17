@@ -1,24 +1,23 @@
 package com.example.lbms;
 
 public class Book {
-    private String BookID , BookTitle , BookCell , BookAuthor, ISBN, bibionumber, status;
+    private Integer BookID , BookNum;
+    private String BookTitle , Copyrightdate , BookAuthor;
 
-    public Book(String bookID, String bookTitle, String bookCell, String bookAuthor, String ISBN, String bibionumber, String status) {
+    public Book(Integer bookID, String bookTitle,  String bookAuthor,String copyright,Integer bookNum) {
         BookID = bookID;
         BookTitle = bookTitle;
-        BookCell = bookCell;
+        Copyrightdate  = copyright;
         BookAuthor = bookAuthor;
-        ISBN = ISBN;
-        this.bibionumber = bibionumber;
-        this.status = status;
+        BookNum = bookNum;
     }
 
-    public String getStatus() {
-        return status;
+    public Integer getBookID() {
+        return BookID;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setBookID(Integer bookID) {
+        BookID = bookID;
     }
 
     public String getBookTitle() {
@@ -29,20 +28,12 @@ public class Book {
         BookTitle = bookTitle;
     }
 
-    public String getBookCell() {
-        return BookCell;
+    public String getCopyrightdate() {
+        return Copyrightdate;
     }
 
-    public void setBookCell(String bookCell) {
-        BookCell = bookCell;
-    }
-
-    public String getBookID() {
-        return BookID;
-    }
-
-    public void setBookID(String bookID) {
-        BookID = bookID;
+    public void setCopyrightdate(String copyrightdate) {
+        Copyrightdate = copyrightdate;
     }
 
     public String getBookAuthor() {
@@ -53,19 +44,11 @@ public class Book {
         BookAuthor = bookAuthor;
     }
 
-    public String getISBN() {
-        return ISBN;
+    public Integer getBookNum() {
+        return BookNum;
     }
 
-    public void setIBSN(String IBSN) {
-        this.ISBN = IBSN;
-    }
-
-    public String getBibionumber() {
-        return bibionumber;
-    }
-
-    public void setBibionumber(String bibionumber) {
-        this.bibionumber = bibionumber;
+    public void setBookNum(Integer bookNum) {
+        BookNum = bookNum;
     }
 }

@@ -128,8 +128,8 @@ public class DashboardController implements Initializable {
         Returnseries.setName("Books Returned");
         Pendingseries.setName("Books Pending");
         DatabaseConnection conn = new DatabaseConnection();
-        String query1 = "SELECT COUNT(*) FROM issues";
-        String query2 = "SELECT COUNT(*) FROM old_issues";
+        String query1 = "SELECT COUNT(*) FROM statistics where type ='issue'";
+        String query2 = "SELECT COUNT(*) FROM statistics where type='return'";
         PreparedStatement ps1 = conn.getConnection("root","admin123").prepareStatement(query1);
         PreparedStatement ps2 = conn.getConnection("root","admin123").prepareStatement(query2);
         ResultSet rs1 = ps1.executeQuery();
@@ -144,7 +144,7 @@ public class DashboardController implements Initializable {
     }
     void getUserInfo() throws SQLException {
         DatabaseConnection conn = new DatabaseConnection();
-        String query = "SELECT * FROM Librarian WHERE Lib_name = "+Main.user+"";
+        String query = "SELECT * FROM Librarian WHERE Lib_name = '"+Main.user+"'";
         PreparedStatement ps = conn.getConnection("root","admin123").prepareStatement(query);
         ResultSet rs = ps.executeQuery();
         if(rs.next())

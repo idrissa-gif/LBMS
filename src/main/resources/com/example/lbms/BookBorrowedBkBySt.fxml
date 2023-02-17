@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@bookborrowed.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lbms.BookBorrowedbySTController">
+   <children>
+      <AnchorPane fx:id="HeaderPane" prefHeight="110.0" prefWidth="643.0" stylesheets="@bookborrowed.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label fx:id="TitleField" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="148.0" layoutY="30.0" prefHeight="53.0" prefWidth="432.0" text="STUDENTS" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="148.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="89.0" fitWidth="90.0" layoutX="72.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/borrow.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="StudentTableView" layoutY="97.0" prefHeight="435.0" prefWidth="638.0" tableMenuButtonVisible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <columns>
+            <TableColumn fx:id="StudentIdTableColumn" minWidth="15.0" prefWidth="92.0" text="ID" />
+            <TableColumn fx:id="FirstNameTableColumn" minWidth="15.0" prefWidth="97.0" text="FirstName" />
+            <TableColumn fx:id="LastNameTableColumn" minWidth="15.0" prefWidth="119.0" text="LastName" />
+            <TableColumn fx:id="PhoneTableColumn" minWidth="15.0" prefWidth="115.0" text="Phone" />
+            <TableColumn fx:id="AddressTableColumn" minWidth="15.0" prefWidth="118.0" text="Address" />
+            <TableColumn fx:id="EmailTableColumn" minWidth="15.0" prefWidth="118.0" text="Email" />
+            <TableColumn fx:id="CountryTableColumn" minWidth="15.0" prefWidth="118.0" text="Country" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

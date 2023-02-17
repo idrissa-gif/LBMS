@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
@@ -26,6 +27,7 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,16 +36,17 @@ public class BookController implements Initializable {
     public Button SearchButton;
     public TableView <Book>BookTableView;
     public TableColumn<Book,String> BookIdTableColumn;
-    public TableColumn <Book,String>BookNumberTableColumn;
+
     public TableColumn <Book,String>TitleTableColumn;
     public TableColumn <Book,String>AuthorColumn;
-    public TableColumn <Book,String>ISBNColumn;
-    public TableColumn <Book,String>BibioTableColumn;
-    public TableColumn <Book,String>StatusTableColumn;
+    public TableColumn <Book,Integer> CopiesColumn;
+    public TableColumn <Book,String> CopyrightTableColumn;
     public TableColumn<Book,String> EditDelTableColumn;
     public TextField SearchTextFiled;
     public FontAwesomeIconView AddBookButton;
     public FontAwesomeIconView DelBookButton;
+    public static Integer bookid = 1;
+
 
     @FXML
     ObservableList<Book> oblist = FXCollections.observableArrayList();
@@ -57,25 +60,25 @@ public class BookController implements Initializable {
         }
     }
     public void refreshTableView() throws SQLException {
+        BookTableView.getItems().clear();
+        SearchTextFiled.clear();
         try {
-            String query = "SELECT I.itemnumber , B.title, I.itemcallnumber, B.author,BI.isbn,I.biblionumber, I.barcode from items I , biblio B ,biblioitems BI where (I.biblionumber=B.biblionumber AND BI.biblionumber=I.biblionumber)";
+            String query = "SELECT book_id, book_name, book_author, copyrightdate, book_num FROM books";
             DatabaseConnection conn = new DatabaseConnection();
             PreparedStatement ps = conn.getConnection("root", "admin123").prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                oblist.add(new Book(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),rs.getString(7)));
+                oblist.add(new Book(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4),rs.getInt(5)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         BookIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("BookID"));
-        BookNumberTableColumn.setCellValueFactory(new PropertyValueFactory<>("BookTitle"));
-        TitleTableColumn.setCellValueFactory(new PropertyValueFactory<>("BookCell"));
+        TitleTableColumn.setCellValueFactory(new PropertyValueFactory<>("BookTitle"));
         AuthorColumn.setCellValueFactory(new PropertyValueFactory<>("BookAuthor"));
-        ISBNColumn.setCellValueFactory(new PropertyValueFactory<>("ISBN"));
-        BibioTableColumn.setCellValueFactory(new PropertyValueFactory<>("bibionumber"));
-        StatusTableColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        CopyrightTableColumn.setCellValueFactory(new PropertyValueFactory<>("Copyrightdate"));
+        CopiesColumn.setCellValueFactory(new PropertyValueFactory<>("BookNum"));
         BookTableView.setItems(oblist);
     }
     public void ClickOnAddBookButton(MouseEvent actionEvent) throws IOException {
@@ -104,24 +107,23 @@ public class BookController implements Initializable {
     public void ClickOnSearchButton(ActionEvent actionEvent) {
         BookTableView.getItems().clear();
         try {
-            String query = "SELECT I.itemnumber , B.title, I.itemcallnumber, B.author,BI.isbn,I.biblionumber, I.barcode from items I , biblio B ,biblioitems BI where ((I.biblionumber=B.biblionumber AND BI.biblionumber=I.biblionumber) AND ( I.biblionumber LIKE '%"+SearchTextFiled.getText()+"%' OR B.title LIKE '%"+SearchTextFiled.getText()+"%' OR I.itemcallnumber LIKE '%"+SearchTextFiled.getText()+"%' OR B.author LIKE '%"+SearchTextFiled.getText()+"%' OR B.biblionumber LIKE '%"+SearchTextFiled.getText()+"%' OR I.barcode LIKE '%"+SearchTextFiled.getText()+"%'))";
+            String query = "SELECT book_id, book_name,book_author,copyrightdate,book_num FROM books where  book_name LIKE '%"+SearchTextFiled.getText()+"%' OR book_id LIKE '%"+SearchTextFiled.getText()+"%' OR book_author LIKE '%"+SearchTextFiled.getText()+"%' OR copyrightdate LIKE '%"+SearchTextFiled.getText()+"%' OR book_num LIKE '%"+SearchTextFiled.getText()+"%'";
             DatabaseConnection conn = new DatabaseConnection();
             PreparedStatement ps = conn.getConnection("root", "admin123").prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                oblist.add(new Book(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),rs.getString(7)));
+                oblist.add(new Book(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getInt(5)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         BookIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("BookID"));
-        BookNumberTableColumn.setCellValueFactory(new PropertyValueFactory<>("BookTitle"));
-        TitleTableColumn.setCellValueFactory(new PropertyValueFactory<>("BookCell"));
+        TitleTableColumn.setCellValueFactory(new PropertyValueFactory<>("BookTitle"));
         AuthorColumn.setCellValueFactory(new PropertyValueFactory<>("BookAuthor"));
-        ISBNColumn.setCellValueFactory(new PropertyValueFactory<>("ISBN"));
-        BibioTableColumn.setCellValueFactory(new PropertyValueFactory<>("bibionumber"));
-        StatusTableColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        CopyrightTableColumn.setCellValueFactory(new PropertyValueFactory<>("Copyrightdate"));
+        CopiesColumn.setCellValueFactory(new PropertyValueFactory<>("BookNum"));
         BookTableView.setItems(oblist);
     }
 
@@ -152,16 +154,23 @@ public class BookController implements Initializable {
                                 "-fx-font-family: FontAwesome; -fx-fill: BLUE; -fx-font-size: 28px"
                         );
                         deleteIcon.setOnMouseClicked((MouseEvent event) -> {
-
                             try {
                                 Book book =BookTableView.getSelectionModel().getSelectedItem();
-                                String query = "DELETE FROM items WHERE itemnumber  = '"+book.getBookID()+"'";
+                                String query = "DELETE FROM books WHERE book_id='"+book.getBookID()+"'";
                                 DatabaseConnection conn = new DatabaseConnection();
                                 PreparedStatement ps = conn.getConnection("root", "admin123").prepareStatement(query);
-
-                                ps.execute();
+                                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                alert.setTitle("Delete Conformation?");
+                                alert.setHeaderText(null);
+                                alert.setContentText("Do you really can to delete the Book ID "+book.getBookID());
+                                alert.initOwner(BookTableView.getScene().getWindow());
+                                Optional<ButtonType> RES = alert.showAndWait();
+                                if(RES.get() == ButtonType.OK)
+                                {
+                                    ps.execute();
+                                    refreshTableView();
+                                }
                                 refreshTableView();
-
                             } catch (SQLException ex) {
                                 Logger.getLogger(BookController.class.getName()).log(Level.SEVERE, null, ex);
                             }
@@ -177,7 +186,7 @@ public class BookController implements Initializable {
                             }
 
                             EditBookController editBookController = loader.getController();
-                            editBookController.setTextField(book.getBookID(), book.getBookCell(),book.getBookAuthor(),book.getBibionumber(), book.getBookTitle());
+                            editBookController.setTextField(book.getBookID(), book.getBookTitle(),book.getBookAuthor(), book.getCopyrightdate(),book.getBookNum());
                             Parent parent = loader.getRoot();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(parent));
@@ -202,5 +211,25 @@ public class BookController implements Initializable {
         };
         EditDelTableColumn.setCellFactory(cellFoctory);
         BookTableView.setItems(oblist);
+    }
+
+    public void GetBookIdValues() {
+        Book book = BookTableView.getItems().get(BookTableView.getSelectionModel().getSelectedIndex());
+        bookid = Integer.valueOf(book.getBookID());
+    }
+    public void ViewBookBorrowedbySt(MouseEvent mouseEvent) throws IOException {
+        if(mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+            if(mouseEvent.getClickCount()==2) {
+                GetBookIdValues();
+                Stage window = (Stage) BookTableView.getScene().getWindow();
+                Parent page = FXMLLoader.load(getClass().getResource("BookBorrowedBkBySt.fxml"));
+                Scene scene = new Scene(page);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.initOwner(window);
+                stage.setScene(scene);
+                stage.show();
+            }
+        }
     }
 }

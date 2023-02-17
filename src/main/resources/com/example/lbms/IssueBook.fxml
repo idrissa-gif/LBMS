@@ -2,32 +2,54 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to right, #233329, #2FB166);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lbms.IssueBookController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to right, #233329, #2FB166);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lbms.IssueBookController">
    <children>
       <Label alignment="CENTER" layoutX="174.0" layoutY="22.0" prefHeight="54.0" prefWidth="296.0" text="Book Issue" textFill="WHITE">
          <font>
             <Font size="37.0" />
          </font></Label>
-      <Label layoutX="181.0" layoutY="117.0" text="Book Number:" textFill="WHITE">
+      <Label layoutX="128.0" layoutY="100.0" text="Book Number:" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="181.0" layoutY="219.0" text="Student ID:" textFill="WHITE">
+      <Label layoutX="146.0" layoutY="262.0" text="Student ID:" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="IssueButton" layoutX="285.0" layoutY="328.0" mnemonicParsing="false" onAction="#ClickOnIssueButton" prefHeight="42.0" prefWidth="73.0" style="-fx-background-radius: 15;" text="Issue">
+      <Button fx:id="IssueButton" layoutX="285.0" layoutY="418.0" mnemonicParsing="false" onAction="#ClickOnIssueButton" prefHeight="42.0" prefWidth="73.0" style="-fx-background-radius: 15;" text="Issue">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="BookNumberTextField" layoutX="236.0" layoutY="146.0" />
-      <TextField fx:id="StudentIDTextField" layoutX="236.0" layoutY="260.0" />
+      <TextField fx:id="BookNumberTextField" layoutX="237.0" layoutY="99.0" onMouseExited="#MouseExitedBook" />
+      <TextField fx:id="StudentIDTextField" layoutX="236.0" layoutY="260.0" onMouseExited="#MouseExitedStudent" />
+      <TableView fx:id="BookTableView" layoutY="140.0" prefHeight="87.0" prefWidth="600.0" tableMenuButtonVisible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <columns>
+            <TableColumn fx:id="BookIdTableColumn" minWidth="15.0" prefWidth="127.0" text="Book Id" />
+            <TableColumn fx:id="TitleTableColumn" minWidth="15.0" prefWidth="104.0" text="Title" />
+            <TableColumn fx:id="AuthorColumn" minWidth="15.0" prefWidth="203.0" text="Author" />
+            <TableColumn fx:id="CopiesColumn" minWidth="15.0" prefWidth="94.0" text="# Copies" />
+            <TableColumn fx:id="CopyrightTableColumn" minWidth="15.0" prefWidth="104.0" text="Copryright date" />
+         </columns>
+      </TableView>
+      <TableView fx:id="StudentTableView" layoutY="301.0" onMouseExited="#MouseExitedStudent" prefHeight="87.0" prefWidth="600.0" tableMenuButtonVisible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <columns>
+            <TableColumn fx:id="IdTableColumn" minWidth="15.0" prefWidth="92.0" text="ID" />
+            <TableColumn fx:id="FirstNameTableColumn" minWidth="15.0" prefWidth="97.0" text="FirstName" />
+            <TableColumn fx:id="LastNameTableColumn" minWidth="15.0" prefWidth="119.0" text="LastName" />
+            <TableColumn fx:id="PhoneTableColumn" minWidth="15.0" prefWidth="115.0" text="Phone" />
+            <TableColumn fx:id="AddressTableColumn" minWidth="15.0" prefWidth="118.0" text="Address" />
+            <TableColumn fx:id="EmailTableColumn" maxWidth="1.7976931348623157E308" minWidth="15.0" prefWidth="96.0" text="Email" />
+            <TableColumn fx:id="CountryTableColumn" maxWidth="1.7976931348623157E308" minWidth="15.0" prefWidth="96.0" text="Country" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

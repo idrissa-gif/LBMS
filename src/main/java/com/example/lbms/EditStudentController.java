@@ -1,11 +1,17 @@
 package com.example.lbms;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import static com.example.lbms.LoginController.showAlert;
 
 public class EditStudentController implements Initializable {
     public TextField IdStudentTextField;
@@ -30,5 +36,18 @@ public class EditStudentController implements Initializable {
         PhoneTextFiled.setText(phone);
         EmailTextField.setText(email);
         CountryTextFiled.setText(country);
+    }
+    public void ClickOnEditButton(ActionEvent actionEvent) throws SQLException {
+        DatabaseConnection conn = new DatabaseConnection();
+        String Query = "UPDATE borrowers set cardnumber = '" + IdStudentTextField.getText() + "' , surname = '" + FirstnameTextField.getText() + "', firstname = '"+LastnameTextField.getText()+"', address = '"+AddressTextField.getText()+"', phone = '"+PhoneTextFiled.getText()+"', country = '"+CountryTextFiled.getText()+"', email = '"+EmailTextField.getText()+"' WHERE cardnumber = '" + Integer.parseInt(IdStudentTextField.getText()) + "'";
+        PreparedStatement preparedStbooksatement = conn.getConnection("root", "admin123").prepareStatement(Query);
+        int cnt = preparedStbooksatement.executeUpdate();
+
+        if (cnt > 0) {
+            showAlert(Alert.AlertType.INFORMATION, EditButton.getScene().getWindow(), "Successful", "Book successfully Edited");
+        } else {
+            showAlert(Alert.AlertType.WARNING, EditButton.getScene().getWindow(), "Failed", "Book would not be Edited");
+        }
+
     }
 }
